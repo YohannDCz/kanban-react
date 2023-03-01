@@ -46,13 +46,13 @@ class Panel extends React.Component {
       if (i = 0) {
         board1.push(
         <div key={i} className="board board1 active">
-          <img src="../../public/icon-board.svg" alt="" className="board-icon" />
+          <img src="/icon-board.svg" alt="" className="board-icon" />
           <h2 className="sub-title">{this.state.data[i].name}</h2>
         </div>
       )} else if (i > 0) {
         board1.push(
         <div key={i} className="board board1">
-          <img src="../../public/icon-board.svg" alt="" className="board-icon" />
+          <img src="/icon-board.svg" alt="" className="board-icon" />
           <h2 className="sub-title">{this.state.data[i].name}</h2>
         </div>
       )}
@@ -66,21 +66,21 @@ class Panel extends React.Component {
               <div className="boards">{board1}</div>
               <div className="addBoards">
                 <div className="board">
-                  <img src="../../public/icon-board.svg" alt="" className="board-icon-purple" />
+                  <img src="/icon-board.svg" alt="" className="board-icon-purple" />
                   <h2 className="sub-title">+ Create New Board</h2>
                 </div>
               </div>
             </div>
             <div className="night-shift">
-              <img src="../../public/icon-light-theme.svg" alt="" className="light-theme"/>
+              <img src="/icon-light-theme.svg" alt="" className="light-theme"/>
               <label className="switch">
                 <input type="checkbox" />
                 <span className="slider round"></span>
               </label>
-              <img src="../../public/icon-dark-theme.svg" alt="" className="dark-theme" />
+              <img src="/icon-dark-theme.svg" alt="" className="dark-theme" />
             </div>
             {/* <div className="hide" style="display: none;">
-              <img src="../../public/icon-hide-sidebar.svg" alt="" className="eye" />
+              <img src="/icon-hide-sidebar.svg" alt="" className="eye" />
             </div> */}
         </div>
       </nav>

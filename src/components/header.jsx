@@ -7,12 +7,12 @@ function Header() {
   let background = "#635FC7";
   let num;
 
-  fetch('http://localhost:5174/src/data.json')
+  fetch('./src/data.json')
     .then((text) => text.json())
     .then((data) => {num = data.boards.length});
 
   function handleClick(e) {
-    fetch('http://localhost:5174/src/data.json')
+    fetch('./src/data.json')
         .then((text) => text.json())
         .then((data) => {
           let division = e.target.innerText;
@@ -41,18 +41,18 @@ function Header() {
     return (
       <header>
         <div className="left-info"> 
-          <img src="../../public/logo-mobile.svg" alt="The logo of the brand." className="logo" />
+          <img src="/logo-mobile.svg" alt="The logo of the brand." className="logo" />
           <div className="board-name" onClick={handleClick}>
             <h1>Platform Launch</h1>
-            <img src="../../public/icon-chevron-down.svg" alt="The down chevron." className="downchevron"/>
+            <img src="/icon-chevron-down.svg" alt="The down chevron." className="downchevron"/>
           </div>
         </div>
         <div className="right-info">
           <button className="addTask" style={{backgroundColor: background}}>
-            <img src="../../public/icon-add-task-mobile.svg" alt="Plus" className="plus" />
+            <img src="/icon-add-task-mobile.svg" alt="Plus" className="plus" />
             <p className="addNewTask">+ Add New Task</p>
           </button>
-          <img src="../../public/icon-vertical-ellipsis.svg" alt="Drop down menu." />
+          <img src="/icon-vertical-ellipsis.svg" alt="Drop down menu." />
         </div>
       </header>
     )
