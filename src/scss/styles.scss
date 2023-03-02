@@ -3,13 +3,15 @@
 @use "root.scss";
 @use "header.scss";
 @use "navbar.scss";
+@use "background.scss";
 
 #root {
+  position: relative;
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 320px;
+  min-width: 100vw;
   min-height: 100vh;
 }
 

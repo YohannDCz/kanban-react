@@ -1,0 +1,42 @@
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--clr-l-2);
+  overflow: hidden;
+  z-index: -1;
+  
+  .description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+
+    .text, button {
+      font-size: 18px;
+      font-family: var(--ff);
+      font-weight: 700;
+    }
+
+    .text {
+      color: var(--clr-d-5);
+      text-align: center;
+    }
+
+    button {
+      font-size: 15px;
+      color: var(--clr-l-1);
+      background-color: var(--clr-pp-1);
+      border: none;
+      width: 174px;
+      height: 48px;
+      border-radius: 999px;
+      margin-top: 24px;
+    }
+  }
+}

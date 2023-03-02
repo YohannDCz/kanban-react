@@ -1,18 +1,16 @@
 import React from "react"
 import ReactDOM from "react-dom";
 
-
-
 function Header() {
   let background = "#635FC7";
   let num;
 
-  fetch('./src/data.json')
+  fetch('/src/data.json')
     .then((text) => text.json())
     .then((data) => {num = data.boards.length});
 
   function handleClick(e) {
-    fetch('./src/data.json')
+    fetch('/src/data.json')
         .then((text) => text.json())
         .then((data) => {
           let division = e.target.innerText;

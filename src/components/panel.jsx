@@ -6,19 +6,19 @@ class Panel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {num : 0, data: ""};
-    this.boards = this.boards.bind(this);
+    // this.boards = this.boards.bind(this);
   }
 
   componentDidMount() {
-    fetch('./src/data.json')
+    fetch('/src/data.json')
     .then((response) => response.json())
     .then((result) => {
       this.setState({
-        data : result.boards,
-        num: result.boards.length});
+        num: result.boards.length,
+        data : result.boards})
       });
       console.log(this.state.data);
-    }
+  }
   
   
 
@@ -34,29 +34,16 @@ class Panel extends React.Component {
       }
     }
   } 
-  
-  boards() {
-    
-    console.log(board1);
-  }
 
   render() {
     let board1 = []
-    for (let i = 0; i < this.state.num; i++) {
-      if (i = 0) {
+    for (let i = 0; i < this.state.data.length; i++) {
         board1.push(
-        <div key={i} className="board board1 active">
-          <img src="/icon-board.svg" alt="" className="board-icon" />
-          <h2 className="sub-title">{this.state.data[i].name}</h2>
-        </div>
-      )} else if (i > 0) {
-        board1.push(
-        <div key={i} className="board board1">
-          <img src="/icon-board.svg" alt="" className="board-icon" />
-          <h2 className="sub-title">{this.state.data[i].name}</h2>
-        </div>
-      )}
-    }
+          <div key={i} className="board board1">
+            <img src="/icon-board.svg" alt="" className="board-icon" />
+            <h2 className="sub-title">{this.state.data[i].name}</h2>
+          </div>
+    )}
     return (
       <nav>
         <div className="filter"></div>
