@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import Header from './components/header'
-import Panel from './components/panel';
 import Background from './components/background'
-
+import { Todos } from './components/todos'
 function App() {
   return (
     <>
       <Header />
       <Background />
+      <Todos />
     </>
   )
 }

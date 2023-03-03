@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { handleClickHeader } from "./header";
 
 interface IProps {
 }
@@ -28,15 +29,12 @@ class Panel extends React.Component<IProps, IState> {
     }
   }
 
-  
-  
-
   componentDidUpdate() {
     const boards: any = document.querySelectorAll(".board1");
     const boardName: any = document.querySelector(".board-name")?.querySelector("h1");
 
     for (let i = 0; i < boards.length; i++) {
-      boards[i].addEventListener("click", function (e) {
+      boards[i].addEventListener("click", function () {
         let j = 0;
         while (j < boards.length) {
           boards[j++].className = "board board1";
@@ -45,6 +43,7 @@ class Panel extends React.Component<IProps, IState> {
         boardName.innerText = boards[i].querySelector("h2").innerText
       })
     }
+
     const element: any = document.querySelector(".board");
     ReactDOM.findDOMNode(element).className = "board board1 active"
   } 
@@ -81,7 +80,7 @@ class Panel extends React.Component<IProps, IState> {
                 </label>
                 <img src="/icon-dark-theme.svg" alt="" className="dark-theme" />
               </div>
-              <div className="hide">
+              <div className="hide" onClick={handleClickHeader}>
                 <img src="/icon-hide-sidebar.svg" alt="" className="eye" />
                 <p>Hide Sidebar</p>
               </div>

@@ -148,6 +148,24 @@ header {
           height: 25.22px;
         }
       }
+
+      .show {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--clr-pp-1);
+        position: absolute;
+        bottom: 32px;
+        width: 56px;
+        height: 48px;
+        border-radius: 0 999px 999px 0;
+        cursor: pointer;
+        
+        img {
+          width: 16px;
+          height: 10.22px;
+        }
+      }
     }
     
     .right-info {
@@ -155,29 +173,31 @@ header {
       height: 80px;
       flex: 1;
 
-      .board-name {
+      .container {
+        .board-name {
 
-        margin-left: 24px;
+          margin-left: 24px;
 
-        h1 {
-          font-size: 20px;
-          margin: 0;
+          h1 {
+            font-size: 20px;
+            margin: 0;
+          }
+    
+          .downchevron {
+            display: none;
+          }
         }
-  
-        .downchevron {
-          display: none;
-        }
-      }
-      
-      .addTask {
+        
+        .addTask {
 
-        .plus {
-          display: none;
-        }
+          .plus {
+            display: none;
+          }
 
-        .addNewTask {
-          display: flex;
-          padding: 14px 25px;
+          .addNewTask {
+            display: flex;
+            padding: 14px 25px;
+          }
         }
       }
     } 
