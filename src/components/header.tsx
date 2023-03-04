@@ -23,20 +23,25 @@ export const handleClickHeader = (e: any) => {
   const downchevron: any = document.querySelector('.downchevron');
   const show: any = document.querySelector(".show");
   const width: number = window.innerWidth;
+  const main: any = document.querySelector("main");
 
   if (menu.style.display === "none") {
-    document.body.style.overflow = "hidden";
     menu.style.display = "flex";
     downchevron.style.transform = "rotate(180deg)";
-    if (width > 620) {
-      show.style.display = "none"
+    show.style.display = "none";
+    if (width >= 620) {
+      main.style.transform = "translateX(260px)";
+    } else if (width < 620) {
+      document.body.style.overflow = "hidden";
     }
-  } else {
-    document.body.style.overflow = "auto";
+  } else if (menu.style.display === "flex") {
     menu.style.display = "none";
     downchevron.style.transform = "rotate(0deg)";
-    if (width > 620) {
+    if (width >= 620) {
       show.style.display = "flex";
+      main.style.transform = "translateX(0)";
+    } else if (width < 620) {
+      document.body.style.overflow = "auto";
     }
   }
 }

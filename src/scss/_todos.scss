@@ -3,12 +3,13 @@ main {
   flex-direction: row;
   position: relative;
   background-color: var(--clr-l-2);
+  height: calc(100vh - 64px);
 
   .todo-list {
     display: flex;
     flex-direction: column;
-    margin-left: 24px;
-    margin-top: 24px;
+      margin-left: 16px;
+      margin-top: 24px;
 
     .todo-title {
       display: flex;
@@ -56,6 +57,16 @@ main {
           color: var(--clr-d-5)
         }
       }
+    }
+  }
+}
+
+@media only screen and (min-width: 620px) {
+  main {
+    height: calc(100vh - 80px);
+
+    .todo-list {
+      margin-left: 24px;
     }
   }
 }

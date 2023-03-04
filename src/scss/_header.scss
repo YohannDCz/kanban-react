@@ -1,20 +1,13 @@
-.header {
-  position: fixed;
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: sticky;
   top: 0;
   right: 0;
   left: 0; 
   height: 64px;
   background-color: var(--clr-l-1);
-  z-index: 1;
-}
-header {
-  
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  // align-items: center;
-  width: 100vw;
-  height: 100vh;
   z-index: 1;
 
   .left-info {
@@ -155,12 +148,11 @@ header {
         align-items: center;
         background-color: var(--clr-pp-1);
         position: absolute;
-        bottom: 32px;
+        top: 744px;
         width: 56px;
         height: 48px;
         border-radius: 0 999px 999px 0;
-        cursor: pointer;
-        
+
         img {
           width: 16px;
           height: 10.22px;
