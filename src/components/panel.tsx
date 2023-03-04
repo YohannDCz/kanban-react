@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { handleClickHeader } from "./header";
+import { handleClickAddBoard } from "./header";
 
 interface IProps {
 }
@@ -64,7 +65,7 @@ class Panel extends React.Component<IProps, IState> {
             <div className="all-boards">
               <h1 className="title">All Boards ({this.state.num})</h1>
               <div className="boards">{board1}</div>
-              <div className="addBoards">
+              <div className="addBoards" onClick={handleClickAddBoard}>
                 <div className="board">
                   <img src="/icon-board.svg" alt="" className="board-icon-purple" />
                   <h2 className="sub-title">+ Create New Board</h2>

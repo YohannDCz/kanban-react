@@ -50,8 +50,10 @@
 
         &.active {
           background-color: var(--clr-pp-1);
-          color: white;
 
+          h2 {
+            color: white;
+          }
           img {
             filter: brightness(0) invert(1);
           }

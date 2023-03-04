@@ -29,7 +29,6 @@ export class Todos extends React.Component<IProps, IState> {
   componentDidUpdate() {
     const main = document.querySelector("main");
     const boardName = document.querySelector(".board-name")?.querySelector("h1")?.innerText;
-    this.state.data
   } 
 
   render () {

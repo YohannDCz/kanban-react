@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import ReactDOM from "react-dom";
-import Panel from "./panel"
+import Panel from "./panel";
+import { NewTask } from "./newTask";
 
 export const handleClickHeader = (e: any) => {
   // fetch('/src/data.json')
@@ -51,6 +52,38 @@ export const handleClickHeader = (e: any) => {
   }
 }
 
+export function handleClickAddTask() {
+  const newTask: any = document.querySelector(".newTask");
+  const header: any = document.querySelector("header");
+
+  if (newTask.style.display === "none") {
+    newTask.style.display = "flex"
+    header.style.position = "relative";
+  } else if (newTask.style.display === "flex") {
+    newTask.style.display = "none";
+    header.style.position = "sticky";
+  }
+}
+
+export function handleClickAddBoard() {
+  const newBoard: any = document.querySelector(".newBoard");
+  const header: any = document.querySelector("header");
+  const panel: any = document.querySelector("nav");
+  const downchevron: any = document.querySelector('.downchevron');
+
+
+  if (newBoard.style.display === "none") {
+    newBoard.style.display = "flex"
+    header.style.position = "relative";
+    panel.style.display = "none";
+    downchevron.style.transform = "rotate(0deg)";
+    document.body.style.overflow = "auto";
+  } else if (newBoard.style.display === "flex") {
+    newBoard.style.display = "none";
+    header.style.position = "sticky";
+  }
+}
+
 function Header() {
   const [background, setBackground] = useState("#635FC7");
   
@@ -62,8 +95,11 @@ function Header() {
       show.style.display = "none";
     }
   }
+
   window.addEventListener("resize", displayShow);
+
   return (
+
     <header onChange={displayShow}>
       <div className="header"></div>
       <div className="left-info"> 
@@ -85,11 +121,11 @@ function Header() {
             <img src="/icon-chevron-down.svg" alt="The down chevron." className="downchevron"/>
           </div>
           <div className="rightright-info">
-            <button className="addTask" style={{backgroundColor: background}}>
+            <button className="addTask" style={{backgroundColor: background}} onClick={handleClickAddTask}>
               <img src="/icon-add-task-mobile.svg" alt="Plus" className="plus" />
               <p className="addNewTask">+ Add New Task</p>
             </button>
-            <img src="/icon-vertical-ellipsis.svg" alt="Drop down menu." />
+            <img src="/icon-vertical-ellipsis.svg" alt="Drop down menu." onClick={handleClickAddBoard}/>
           </div>
         </div>
       </div>

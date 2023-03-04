@@ -1,0 +1,54 @@
+import React from "react";
+import ReactDOM from "react-dom";
+import { handleClickAddTask } from "./header";
+import { handleClickAddBoard } from "./header";
+
+interface IProps {
+}
+
+interface IState {
+  boardAction: string;
+}
+
+export class NewBoard extends React.Component<IProps, IState> {
+  constructor(props: IProps) {
+    super(props);
+    this.state = {boardAction: "Add New Board"};
+  }
+
+  render () {
+    return (
+      <section className="newBoard" style={{display: "none"}}>
+        <div className="filter2" onClick={handleClickAddBoard}></div>
+        <div className="board">
+          <div className="box">
+            <form id="boardForm">
+              <h2>{this.state.boardAction}</h2>
+              <div className="title">
+                <label htmlFor="title">Board Name</label>
+                <input id="title" type="text" placeholder="e.g. Take coffee break" />
+              </div>
+              <div className="subtasks">
+                <label htmlFor="button column1 column2 column3 column4 column5">Board Columns</label>
+                <div className="column column1">
+                  <input id="subtask1" type="text" value="Todo"/>
+                  <img src="/icon-cross.svg" alt="" className="cross" />
+                </div>
+                <div className="column column2">
+                  <input id="subtask2" type="text" value="Doing"/>
+                  <img src="/icon-cross.svg" alt="" className="cross" />
+                </div>
+                <div className="column column3">
+                  <input id="subtask2" type="text" value="Done"/>
+                  <img src="/icon-cross.svg" alt="" className="cross" />
+                </div>
+                <button id="button">+ Add New Column</button>
+              </div>
+            </form>
+            <button type="submit" form="addTaskForm" value="SubmitNewBoard">Create New Board / Save Changes</button>
+          </div>
+        </div>
+      </section>
+    )
+  }
+}

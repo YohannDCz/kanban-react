@@ -5,6 +5,14 @@
 @use "panel.scss";
 @use "background.scss";
 @use "todos.scss";
+@use "newtask.scss";
+
+* {
+  font-family: var(--ff);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--clr-d-1);
+}
 
 #root {
   position: relative;
