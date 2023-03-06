@@ -8,7 +8,7 @@ function Panel(props: any) {
     return initialValue || "";
   });
   
-  // const [num, setNum] = useState(data.boards.length);
+  const [num, setNum] = useState(data.boards.length);
   
   
   useEffect(() => {
@@ -47,7 +47,7 @@ function Panel(props: any) {
                   <img src="/icon-board.svg" alt="" className="board-icon" />
                   <h2 className="sub-title">{item.name}</h2>
                 </div>)})}
-          </div>
+            </div>
             <div className="addBoards" onClick={props.handleClickAddBoard}>
               <div className="board">
                 <img src="/icon-board.svg" alt="" className="board-icon-purple" />

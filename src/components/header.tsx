@@ -1,9 +1,8 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import ReactDOM from "react-dom";
-import Panel from "./panel";
-import { NewTask } from "./newTask";
+import Panel from "./panel"
 
-export const handleClickAddTask = () => {
+export const handleClickAddTask = (e: any) => {
   const newTask: any = document.querySelector(".newTask");
   const header: any = document.querySelector("header");
 
@@ -14,9 +13,27 @@ export const handleClickAddTask = () => {
     newTask.style.display = "none";
     header.style.position = "sticky";
   }
+
+  const taskForm: any = document.querySelector(".taskForm")?.querySelector("h2");
+
+  if (e.target.className === "addTask") {
+      taskForm.innerText = "Add Task";
+    } else if (e.target.className === "card") {
+      taskForm.innerText = "Edit Task";
+    }
+    
+  // useEffect(() => {
+    // if (e.target.className === "addTask") {
+    //   taskForm.innerText = "Add Task";
+    // } else if (e.target.className === "card") {
+    //   taskForm.innerText = "Edit Task";
+    // }
+  // }, [e.target.className])
+
+  console.log(taskForm);
 }
 
-export const handleClickAddBoard = () => {
+export const handleClickAddBoard = (e: any) => {
   const newBoard: any = document.querySelector(".newBoard");
   const header: any = document.querySelector("header");
   const panel: any = document.querySelector("nav");
@@ -36,9 +53,16 @@ export const handleClickAddBoard = () => {
     newBoard.style.display = "none";
     header.style.position = "sticky";
   }
+
+  const boardForm: any = document.querySelector("#boardForm")?.querySelector("h2");
+  if (e.target.className === "addBoards") {
+    boardForm.innerText = "Add Board";
+  } else if (e.target.className === "editBoards") {
+    boardForm.innerText = "Edit Board";
+  }
 }
 
-function Header() {
+function Header(props: any) {
   const [background, setBackground] = useState("#635FC7");
   
   const handleClickHeader = (e: any) => {
@@ -98,11 +122,8 @@ function Header() {
       show.style.display = "none";
     }
   }
-
   window.addEventListener("resize", displayShow);
-
   return (
-
     <header onChange={displayShow}>
       <div className="header"></div>
       <div className="left-info"> 
@@ -124,11 +145,11 @@ function Header() {
             <img src="/icon-chevron-down.svg" alt="The down chevron." className="downchevron"/>
           </div>
           <div className="rightright-info">
-            <button className="addTask" style={{backgroundColor: background}} onClick={handleClickAddTask}>
+            <button className="addTask" onClick={handleClickAddTask} style={{backgroundColor: background}}>
               <img src="/icon-add-task-mobile.svg" alt="Plus" className="plus" />
-              <p className="addNewTask">+ Add New Task</p>
+              <h2 className="addNewTask">+ Add New Task</h2>
             </button>
-            <img src="/icon-vertical-ellipsis.svg" alt="Drop down menu." onClick={handleClickAddBoard}/>
+            <img className="editBoards" src="/icon-vertical-ellipsis.svg" alt="Drop down menu." onClick={handleClickAddBoard}/>
           </div>
         </div>
       </div>

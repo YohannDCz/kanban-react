@@ -1,12 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import Header from './components/header'
-import Background from './components/background'
-import { Todos } from './components/todos'
-import { NewTask } from './components/newTask'
-import { NewBoard } from './components/newBoard'
-import { handleClickAddTask } from './components/header'
+import Background from './components/background';
+import { Todos } from './components/todos';
+import { NewBoard } from './components/newBoard';
+import { NewTask } from './components/newTask';
 
 function App() {
+
+  // fetch('/src/data.json')
+  //     .then((response: any) => response.json())
+  //     .then((data) => {localStorage.setItem("data", JSON.stringify(data))});
 
   useEffect(() => {
     try {
@@ -18,15 +21,13 @@ function App() {
     }
     console.log("ok");
   }, [])
-
-  console.log(localStorage.getItem("data"))
-
+  
   return (
     <>
       <Header />
       <Background />
       <Todos />
-      <NewTask handleClickAddTask={handleClickAddTask} />
+      <NewTask/>
       <NewBoard />
     </>
   )
