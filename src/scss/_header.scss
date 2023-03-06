@@ -7,6 +7,7 @@ header {
   right: 0;
   left: 0; 
   height: 64px;
+  width: 100vw;
   background-color: var(--clr-l-1);
   z-index: 1;
 
@@ -152,6 +153,7 @@ header {
         width: 56px;
         height: 48px;
         border-radius: 0 999px 999px 0;
+        cursor: pointer;
 
         img {
           width: 16px;

@@ -3,56 +3,7 @@ import ReactDOM from "react-dom";
 import Panel from "./panel";
 import { NewTask } from "./newTask";
 
-export const handleClickHeader = (e: any) => {
-  // fetch('/src/data.json')
-  //   .then((text) => text.json())
-  //   .then((data) => {
-  //     let division = e.target.innerText;
-  //     let index: any;
-  //     let indexJSON = data.boards.find(function(item: any, i:number){
-  //       if (item.name === division) {
-  //         index = i;
-  //       }
-  //     });
-
-  //     let isActive = !(data.boards[index].columns.length > 0);
-  //     if (isActive) {
-  //         setBackground("#A8A4FF");
-  //     }
-
-  const menu: any = document.querySelector('nav')
-  const downchevron: any = document.querySelector('.downchevron');
-  const show: any = document.querySelector(".show");
-  const width: number = window.innerWidth;
-  const main: any = document.querySelector("main");
-  const background: any = document.querySelector(".background");
-
-  if (menu.style.display === "none") {
-    menu.style.display = "flex";
-    downchevron.style.transform = "rotate(180deg)";
-    show.style.display = "none";
-    if (width >= 620) {
-      main.style.transform = "translateX(260px)";
-      background.style.transform = "translateX(260px)";
-      background.style.width = "calc(100vw - 260px)";
-    } else if (width < 620) {
-      document.body.style.overflow = "hidden";
-    }
-  } else if (menu.style.display === "flex") {
-    menu.style.display = "none";
-    downchevron.style.transform = "rotate(0deg)";
-    if (width >= 620) {
-      show.style.display = "flex";
-      main.style.transform = "translateX(0)";
-      background.style.transform = "translateX(0px)";
-      background.style.width = "100vw";
-    } else if (width < 620) {
-      document.body.style.overflow = "auto";
-    }
-  }
-}
-
-export function handleClickAddTask() {
+export const handleClickAddTask = () => {
   const newTask: any = document.querySelector(".newTask");
   const header: any = document.querySelector("header");
 
@@ -65,19 +16,22 @@ export function handleClickAddTask() {
   }
 }
 
-export function handleClickAddBoard() {
+export const handleClickAddBoard = () => {
   const newBoard: any = document.querySelector(".newBoard");
   const header: any = document.querySelector("header");
   const panel: any = document.querySelector("nav");
   const downchevron: any = document.querySelector('.downchevron');
+  const width: number = window.innerWidth;
 
 
   if (newBoard.style.display === "none") {
     newBoard.style.display = "flex"
-    header.style.position = "relative";
-    panel.style.display = "none";
-    downchevron.style.transform = "rotate(0deg)";
-    document.body.style.overflow = "auto";
+    if (width < 620) {
+      header.style.position = "relative";
+      panel.style.display = "none";
+      downchevron.style.transform = "rotate(0deg)";
+      document.body.style.overflow = "auto";
+    }
   } else if (newBoard.style.display === "flex") {
     newBoard.style.display = "none";
     header.style.position = "sticky";
@@ -87,6 +41,55 @@ export function handleClickAddBoard() {
 function Header() {
   const [background, setBackground] = useState("#635FC7");
   
+  const handleClickHeader = (e: any) => {
+    // fetch('/src/data.json')
+    //   .then((text) => text.json())
+    //   .then((data) => {
+    //     let division = e.target.innerText;
+    //     let index: any;
+    //     let indexJSON = data.boards.find(function(item: any, i:number){
+    //       if (item.name === division) {
+    //         index = i;
+    //       }
+    //     });
+
+    //     let isActive = !(data.boards[index].columns.length > 0);
+    //     if (isActive) {
+    //         setBackground("#A8A4FF");
+    //     }
+
+    const menu: any = document.querySelector('nav')
+    const downchevron: any = document.querySelector('.downchevron');
+    const show: any = document.querySelector(".show");
+    const width: number = window.innerWidth;
+    const main: any = document.querySelector("main");
+    const background: any = document.querySelector(".background");
+
+    if (menu.style.display === "none") {
+      menu.style.display = "flex";
+      downchevron.style.transform = "rotate(180deg)";
+      show.style.display = "none";
+      if (width >= 620) {
+        main.style.transform = "translateX(260px)";
+        background.style.transform = "translateX(260px)";
+        background.style.width = "calc(100vw - 260px)";
+      } else if (width < 620) {
+        document.body.style.overflow = "hidden";
+      }
+    } else if (menu.style.display === "flex") {
+      menu.style.display = "none";
+      downchevron.style.transform = "rotate(0deg)";
+      if (width >= 620) {
+        show.style.display = "flex";
+        main.style.transform = "translateX(0)";
+        background.style.transform = "translateX(0px)";
+        background.style.width = "100vw";
+      } else if (width < 620) {
+        document.body.style.overflow = "auto";
+      }
+    }
+  }
+
   const displayShow = () => {
     const width: number = window.innerWidth;
     const show: any = document.querySelector(".show");
@@ -109,7 +112,7 @@ function Header() {
         <div className="box2">
           <img src="/logo-dark.svg" alt="" className="logotype" />
         </div>
-        <Panel />
+        <Panel handleClickAddBoard={handleClickAddBoard} handleClickAddTask={handleClickAddTask} handleClickHeader={handleClickHeader} />
         <div className="show" onClick={handleClickHeader}>
           <img src="/icon-show-sidebar.svg" alt="" className="eye-open" />
         </div>

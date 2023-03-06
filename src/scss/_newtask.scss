@@ -80,6 +80,7 @@ section {
 
           #subtask1, #subtask2, #subtask3, #subtask4, #subtask5 {
             flex: 1;
+            font-size: 13px;
           }
         }
 
@@ -130,4 +131,12 @@ section {
 
 @media only screen and (min-width: 620px) {
 
+  section {
+
+    height: 100%;
+    
+    .task, .board {
+      margin: auto;
+    }
+  }
 }

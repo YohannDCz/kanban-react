@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { handleClickAddTask } from "./header";
 
 interface IProps {
+  handleClickAddTask: any;
 }
 
 interface IState {
@@ -15,10 +16,13 @@ export class NewTask extends React.Component<IProps, IState> {
     this.state = {taskAction: "Add New Task"};
   }
 
+  componentDidMount(): void {
+    
+  }
   render () {
     return (
       <section className="newTask" style={{display: "none"}}>
-        <div className="filter2" onClick={handleClickAddTask}></div>
+        <div className="filter2" onClick={this.props.handleClickAddTask}></div>
         <div className="task">
           <div className="box">
             <form id="taskForm">
