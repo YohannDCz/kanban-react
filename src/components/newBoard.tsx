@@ -4,7 +4,12 @@ import { handleClickAddTask } from "./header";
 import { handleClickAddBoard } from "./header";
 
 export function NewBoard() {
-
+  const [data, setData] = useState(() => {
+    const saved: any = localStorage.getItem("data");
+    const initialValue: any = JSON.parse(saved);
+    return initialValue || "";
+  });
+  
   return (
     <section className="newBoard" style={{display: "none"}}>
       <div className="filter2" onClick={handleClickAddBoard}></div>

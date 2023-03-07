@@ -55,7 +55,7 @@ export const handleClickAddBoard = (e: any) => {
 function Header(props: any) {
   const [background, setBackground] = useState("#635FC7");
   
-  const handleClickHeader = (e: any) => {
+  const handleClickHeader = () => {
     // fetch('/src/data.json')
     //   .then((text) => text.json())
     //   .then((data) => {
@@ -76,7 +76,7 @@ function Header(props: any) {
     const downchevron: any = document.querySelector('.downchevron');
     const show: any = document.querySelector(".show");
     const width: number = window.innerWidth;
-    const todos: any = document.querySelector(".todo-lists");
+    const todos: any = document.querySelectorAll(".todo-lists");
     const background: any = document.querySelector(".background");
 
     if (menu.style.display === "none") {
@@ -84,7 +84,7 @@ function Header(props: any) {
       downchevron.style.transform = "rotate(180deg)";
       show.style.display = "none";
       if (width >= 620) {
-        todos.style.transform = "translateX(260px)";
+        todos.forEach((todo:any) => todo.style.transform = "translateX(260px)");
         background.style.transform = "translateX(260px)";
         background.style.width = "calc(100vw - 260px)";
       } else if (width < 620) {
@@ -95,7 +95,7 @@ function Header(props: any) {
       downchevron.style.transform = "rotate(0deg)";
       if (width >= 620) {
         show.style.display = "flex";
-        todos.style.transform = "translateX(0)";
+        todos.forEach((todo:any) => todo.style.transform = "translateX(0)")
         background.style.transform = "translateX(0px)";
         background.style.width = "100vw";
       } else if (width < 620) {
@@ -121,7 +121,7 @@ function Header(props: any) {
 
   window.addEventListener("resize", displayShow);
   return (
-    <header onChange={displayShow}>
+    <header>
       <div className="header"></div>
       <div className="left-info"> 
         <div className="box1">

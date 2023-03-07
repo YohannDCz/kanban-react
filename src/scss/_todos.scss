@@ -9,7 +9,10 @@ main {
   overflow: auto;
 
   .todo-lists {
-    display: flex;
+    display: none;
+    &.active {
+      display: flex
+    }
   }
   .todo-list:last-child {
     margin-right: 24px;
@@ -18,8 +21,9 @@ main {
   .todo-list {
     display: flex;
     flex-direction: column;
-      margin-left: 16px;
-      margin-top: 24px;
+    margin-left: 16px;
+    margin-top: 24px;
+    width: 280px;
 
     .todo-title {
       display: flex;
@@ -57,6 +61,7 @@ main {
         h2 {
           font-size: 15px;
           font-family: var(--ff);
+          white-space: normal;
         }
 
         h3 {

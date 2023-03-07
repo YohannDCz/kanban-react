@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { handleClickAddTask } from "./header";
 
 
 export function NewTask(props: any) {
+  const [data, setData] = useState(() => {
+    const saved: any = localStorage.getItem("data");
+    const initialValue: any = JSON.parse(saved);
+    return initialValue || "";
+  });
 
   return (
     <section className="newTask" style={{display: "none"}}>

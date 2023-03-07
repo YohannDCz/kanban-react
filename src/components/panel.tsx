@@ -8,32 +8,37 @@ function Panel(props: any) {
     return initialValue || "";
   });
   
-  const [num, setNum] = useState(3);
+  const [num, setNum] = useState(data.boards.length);
   
   
-  // useEffect(() => {
-  //   const boards: any = document.querySelectorAll(".board1");
-  //   const boardName: any = document.querySelector(".board-name")?.querySelector("h1");
-    
-  //   for (let i = 0; i < 3; i++) {
-  //     boards[i].addEventListener("click", function () {
-  //       let j = 0;
-  //       while (j < boards.length) {
-  //         boards[j++].className = "board board1";
-  //       }
-  //       boards[i].className = "board board1 active";
-  //       boardName.innerText = boards[i].querySelector("h2").innerText
-  //     })
-  //   }
-  // })
+  useEffect(() => {
+    const boards: any = document.querySelectorAll(".board1");
+    const boardName: any = document.querySelector(".board-name")?.querySelector("h1");
+    const todoList: any = document.querySelectorAll(".todo-lists")
+    const width: boolean = window.innerWidth >= 620;
+    const menu: any = document.querySelector('nav')
+
+    for (let i = 0; i < 3; i++) {
+      boards[i].addEventListener("click", function (e) {
+        let j = 0;
+        while (j < boards.length) {
+          todoList[j].classList.remove("active");
+          boards[j++].classList.remove("active");
+        }
+        boards[i].classList.add("active");
+        todoList[i].classList.add("active");
+        boardName.innerText = boards[i].querySelector("h2").innerText
+      })
+    }
+  })
   
+
   useEffect(() => {
     const element: any = document.querySelector(".board");
     const dom: any = ReactDOM.findDOMNode(element);
     dom.className = "board board1 active"
   })
   
-  console.log(data);
   return (
     <nav style={{display: "none"}}>
       <div className="filter" onClick={props.handleClickHeader}></div>
