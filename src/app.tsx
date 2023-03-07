@@ -7,7 +7,6 @@ import { NewTask } from './components/newTask';
   
 
 function App() {
-  require('isomorphic-fetch');
   
   fetch('./src/data.json')
       .then((response: any) => response.json())
