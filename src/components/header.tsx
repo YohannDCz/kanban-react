@@ -17,9 +17,10 @@ export const handleClickAddTask = (e: any) => {
   const taskForm: any = document.querySelector("#taskForm")?.querySelector("h2");
   if (e.target.parentElement.className === "addTasks") {
       taskForm.innerText = "Add Task";
-  } else if (e.target.parentElement.className === "card") {
+  } else if (e.target.parentElement.className === "cards") {
     taskForm.innerText = "Edit Task";
   }
+  console.log(e.target.parentElement)
 }
 
 export const handleClickAddBoard = (e: any) => {
