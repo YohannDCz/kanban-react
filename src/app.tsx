@@ -11,7 +11,11 @@ function App() {
   
   fetch('/data.json')
       .then((response: any) => response.json())
-      .then((data) => {localStorage.setItem("data", JSON.stringify(data.boards))});
+      .then((data) => {
+        localStorage.setItem("data", JSON.stringify(data));
+        console.log(data);
+      });
+
 
   // useEffect(() => {
   //   try {
