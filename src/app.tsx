@@ -16,7 +16,7 @@ function App() {
         console.log(data);
       });
 
-
+  console.log(localStorage.getItem("data"));
   // useEffect(() => {
   //   try {
   //     fetch('/src/data.json')
