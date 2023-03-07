@@ -4,7 +4,8 @@ import Background from './components/background';
 import { Todos } from './components/todos';
 import { NewBoard } from './components/newBoard';
 import { NewTask } from './components/newTask';
-  
+require('isomorphic-fetch');
+
 
 function App() {
   
