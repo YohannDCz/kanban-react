@@ -9,11 +9,10 @@ import { NewTask } from './components/newTask';
 
 function App() {
   
-  fetch('https://github.com/YohannDCz/Kanban/src/data.json')
+  fetch('/src/data.json')
       .then((response: any) => response.json())
       .then((data) => {localStorage.setItem("data", JSON.stringify(data))});
 
-  console.log(JSON.parse(localStorage.getItem("data") || ""));
   // useEffect(() => {
   //   try {
   //     fetch('/src/data.json')
