@@ -33,7 +33,7 @@ function Panel(props: any) {
     dom.className = "board board1 active"
   })
   
-  console.log(localStorage.getItem("data"));
+  console.log(data);
   return (
     <nav style={{display: "none"}}>
       <div className="filter" onClick={props.handleClickHeader}></div>
