@@ -7,7 +7,7 @@ import { NewTask } from './components/newTask';
 
 function App() {
 
-  fetch('/src/data.json')
+  fetch('./src/data.json')
       .then((response: any) => response.json())
       .then((data) => {localStorage.setItem("data", JSON.stringify(data))});
 
