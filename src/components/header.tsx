@@ -17,10 +17,10 @@ export const handleClickAddTask = (e: any) => {
   const taskForm: any = document.querySelector("#taskForm")?.querySelector("h2");
   if (e.target.parentElement.className === "addTasks") {
       taskForm.innerText = "Add Task";
-  } else if (e.target.parentElement.className === "cards") {
+  } else if (e.target.parentElement.className === "card" ||
+             e.target.parentElement.className === "cards" ) {
     taskForm.innerText = "Edit Task";
   }
-  console.log(e.target.parentElement)
 }
 
 export const handleClickAddBoard = (e: any) => {
@@ -45,7 +45,7 @@ export const handleClickAddBoard = (e: any) => {
   }
 
   const boardForm: any = document.querySelector("#boardForm")?.querySelector("h2");
-  if (e.target.className === "addBoards") {
+  if (e.target.parentElement.parentElement.className === "addBoards") {
     boardForm.innerText = "Add Board";
   } else if (e.target.className === "editBoards") {
     boardForm.innerText = "Edit Board";
@@ -76,7 +76,6 @@ function Header(props: any) {
     const downchevron: any = document.querySelector('.downchevron');
     const show: any = document.querySelector(".show");
     const width: number = window.innerWidth;
-    const main: any = document.querySelector("main");
     const todos: any = document.querySelector(".todo-lists");
     const background: any = document.querySelector(".background");
 
@@ -108,11 +107,18 @@ function Header(props: any) {
   const displayShow = () => {
     const width: number = window.innerWidth;
     const show: any = document.querySelector(".show");
-    
+    const menu: any = document.querySelector("nav")
+    const todos: any = document.querySelector(".todo-lists");
+
     if (width < 620) {
       show.style.display = "none";
+    } else if (width >= 620) {
+      if (menu.style.display === "flex") {
+        todos.style.transform = "translateX(260px)";
+      }
     }
   }
+
   window.addEventListener("resize", displayShow);
   return (
     <header onChange={displayShow}>

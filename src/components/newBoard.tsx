@@ -4,7 +4,6 @@ import { handleClickAddTask } from "./header";
 import { handleClickAddBoard } from "./header";
 
 export function NewBoard() {
-  const [boardAction, setBoardAction] = useState("Add New Board");
 
   return (
     <section className="newBoard" style={{display: "none"}}>
@@ -12,7 +11,7 @@ export function NewBoard() {
       <div className="board">
         <div className="box">
           <form id="boardForm">
-            <h2>{boardAction}</h2>
+            <h2></h2>
             <div className="title">
               <label htmlFor="title">Board Name</label>
               <input id="title" type="text" placeholder="e.g. Take coffee break" />

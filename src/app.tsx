@@ -13,10 +13,8 @@ function App() {
       .then((response: any) => response.json())
       .then((data) => {
         localStorage.setItem("data", JSON.stringify(data));
-        console.log(localStorage.getItem("data"));
       });
 
-  // console.log(localStorage.getItem("data"));
   // useEffect(() => {
   //   try {
   //     fetch('/src/data.json')

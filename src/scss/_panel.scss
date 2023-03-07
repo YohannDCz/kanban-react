@@ -9,6 +9,13 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+nav {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .panel {
   display: flex;
   flex-direction: column;
@@ -16,6 +23,8 @@
   align-items: center;
   position: absolute;
   top: 80px;
+  left: auto;
+  right: auto;
   width: 264px;
   height: 322px;
   border-radius: 8px;
@@ -170,8 +179,10 @@
   }
 
   nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     position: relative;
-    left: 0;
     top: 0;
     bottom: 0;
     width: 260px;
