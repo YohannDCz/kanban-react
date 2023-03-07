@@ -8,14 +8,14 @@ function Panel(props: any) {
     return initialValue || "";
   });
   
-  const [num, setNum] = useState(data.boards.length);
+  const [num, setNum] = useState(3);
   
   
   useEffect(() => {
     const boards: any = document.querySelectorAll(".board1");
     const boardName: any = document.querySelector(".board-name")?.querySelector("h1");
     
-    for (let i = 0; i < boards.length; i++) {
+    for (let i = 0; i < 3; i++) {
       boards[i].addEventListener("click", function () {
         let j = 0;
         while (j < boards.length) {
@@ -41,12 +41,12 @@ function Panel(props: any) {
           <div className="all-boards">
             <h1 className="title">All Boards ({num})</h1>
             <div className="boards">
-              {data.boards.map((item: any, i: any) => {
+              {/* {data.boards.map((item: any, i: any) => {
                 return (
                 <div key={i} className="board board1">
                   <img src="/icon-board.svg" alt="" className="board-icon" />
                   <h2 className="sub-title">{item.name}</h2>
-                </div>)})}
+                </div>)})} */}
             </div>
             <div className="addBoards" onClick={props.handleClickAddBoard}>
               <div className="board">
