@@ -4,9 +4,11 @@ import Background from './components/background';
 import { Todos } from './components/todos';
 import { NewBoard } from './components/newBoard';
 import { NewTask } from './components/newTask';
+  
 
 function App() {
-
+  require('isomorphic-fetch');
+  
   fetch('./src/data.json')
       .then((response: any) => response.json())
       .then((data) => {localStorage.setItem("data", JSON.stringify(data))});
