@@ -19,7 +19,7 @@ function Panel(props: any) {
     const menu: any = document.querySelector('nav')
 
     for (let i = 0; i < 3; i++) {
-      boards[i].addEventListener("click", function (e) {
+      boards[i].addEventListener("click", function () {
         let j = 0;
         while (j < boards.length) {
           todoList[j].classList.remove("active");
