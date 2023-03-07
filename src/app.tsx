@@ -4,14 +4,14 @@ import Background from './components/background';
 import { Todos } from './components/todos';
 import { NewBoard } from './components/newBoard';
 import { NewTask } from './components/newTask';
-require('isomorphic-fetch');
+// require('isomorphic-fetch');
 
 
 function App() {
   
-  fetch('./src/data.json')
-      .then((response: any) => response.json())
-      .then((data) => {localStorage.setItem("data", JSON.stringify(data))});
+  // fetch('./src/data.json')
+  //     .then((response: any) => response.json())
+  //     .then((data) => {localStorage.setItem("data", JSON.stringify(data))});
 
   // useEffect(() => {
   //   try {

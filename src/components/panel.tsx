@@ -11,21 +11,21 @@ function Panel(props: any) {
   const [num, setNum] = useState(3);
   
   
-  useEffect(() => {
-    const boards: any = document.querySelectorAll(".board1");
-    const boardName: any = document.querySelector(".board-name")?.querySelector("h1");
+  // useEffect(() => {
+  //   const boards: any = document.querySelectorAll(".board1");
+  //   const boardName: any = document.querySelector(".board-name")?.querySelector("h1");
     
-    for (let i = 0; i < 3; i++) {
-      boards[i].addEventListener("click", function () {
-        let j = 0;
-        while (j < boards.length) {
-          boards[j++].className = "board board1";
-        }
-        boards[i].className = "board board1 active";
-        boardName.innerText = boards[i].querySelector("h2").innerText
-      })
-    }
-  })
+  //   for (let i = 0; i < 3; i++) {
+  //     boards[i].addEventListener("click", function () {
+  //       let j = 0;
+  //       while (j < boards.length) {
+  //         boards[j++].className = "board board1";
+  //       }
+  //       boards[i].className = "board board1 active";
+  //       boardName.innerText = boards[i].querySelector("h2").innerText
+  //     })
+  //   }
+  // })
   
   useEffect(() => {
     const element: any = document.querySelector(".board");

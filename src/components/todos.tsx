@@ -6,7 +6,7 @@ import { handleClickAddTask } from './header';
 export function Todos() {
 
   const [data, setData] = useState();
-  useEffect(() => setData(JSON.parse(localStorage.getItem("data") || "")), []);
+  // useEffect(() => setData(JSON.parse(localStorage.getItem("data") || "")), []);
 
   const main = document.querySelector("main");
   const boardName = document.querySelector(".board-name")?.querySelector("h1")?.innerText;
