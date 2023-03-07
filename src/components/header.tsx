@@ -14,23 +14,12 @@ export const handleClickAddTask = (e: any) => {
     header.style.position = "sticky";
   }
 
-  const taskForm: any = document.querySelector(".taskForm")?.querySelector("h2");
-
-  if (e.target.className === "addTask") {
+  const taskForm: any = document.querySelector("#taskForm")?.querySelector("h2");
+  if (e.target.parentElement.className === "addTasks") {
       taskForm.innerText = "Add Task";
-    } else if (e.target.className === "card") {
-      taskForm.innerText = "Edit Task";
-    }
-    
-  // useEffect(() => {
-    // if (e.target.className === "addTask") {
-    //   taskForm.innerText = "Add Task";
-    // } else if (e.target.className === "card") {
-    //   taskForm.innerText = "Edit Task";
-    // }
-  // }, [e.target.className])
-
-  console.log(taskForm);
+  } else if (e.target.parentElement.className === "card") {
+    taskForm.innerText = "Edit Task";
+  }
 }
 
 export const handleClickAddBoard = (e: any) => {
@@ -87,6 +76,7 @@ function Header(props: any) {
     const show: any = document.querySelector(".show");
     const width: number = window.innerWidth;
     const main: any = document.querySelector("main");
+    const todos: any = document.querySelector(".todo-lists");
     const background: any = document.querySelector(".background");
 
     if (menu.style.display === "none") {
@@ -94,7 +84,7 @@ function Header(props: any) {
       downchevron.style.transform = "rotate(180deg)";
       show.style.display = "none";
       if (width >= 620) {
-        main.style.transform = "translateX(260px)";
+        todos.style.transform = "translateX(260px)";
         background.style.transform = "translateX(260px)";
         background.style.width = "calc(100vw - 260px)";
       } else if (width < 620) {
@@ -105,7 +95,7 @@ function Header(props: any) {
       downchevron.style.transform = "rotate(0deg)";
       if (width >= 620) {
         show.style.display = "flex";
-        main.style.transform = "translateX(0)";
+        todos.style.transform = "translateX(0)";
         background.style.transform = "translateX(0px)";
         background.style.width = "100vw";
       } else if (width < 620) {
@@ -145,7 +135,7 @@ function Header(props: any) {
             <img src="/icon-chevron-down.svg" alt="The down chevron." className="downchevron"/>
           </div>
           <div className="rightright-info">
-            <button className="addTask" onClick={handleClickAddTask} style={{backgroundColor: background}}>
+            <button className="addTasks" onClick={handleClickAddTask} style={{backgroundColor: background}}>
               <img src="/icon-add-task-mobile.svg" alt="Plus" className="plus" />
               <h2 className="addNewTask">+ Add New Task</h2>
             </button>

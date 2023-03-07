@@ -6,8 +6,11 @@ main {
   background-color: var(--clr-l-2);
   min-height: calc(100vh - 64px);
   width: 100%;
-  overflow: scroll;
+  overflow: auto;
 
+  .todo-lists {
+    display: flex;
+  }
   .todo-list:last-child {
     margin-right: 24px;
   }

@@ -20,15 +20,15 @@ export function NewBoard() {
             <div className="subtasks">
               <label htmlFor="button column1 column2 column3 column4 column5">Board Columns</label>
               <div className="column column1">
-                <input id="subtask1" type="text" value="Todo"/>
+                <input id="subtask1" type="text"/>
                 <img src="/icon-cross.svg" alt="" className="cross" />
               </div>
               <div className="column column2">
-                <input id="subtask2" type="text" value="Doing"/>
+                <input id="subtask2" type="text" />
                 <img src="/icon-cross.svg" alt="" className="cross" />
               </div>
               <div className="column column3">
-                <input id="subtask2" type="text" value="Done"/>
+                <input id="subtask2" type="text"/>
                 <img src="/icon-cross.svg" alt="" className="cross" />
               </div>
               <button id="button">+ Add New Column</button>

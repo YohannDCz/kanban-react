@@ -11,7 +11,7 @@ export function NewTask(props: any) {
       <div className="task">
         <div className="box">
           <form id="taskForm" className="taskForm">
-            <h2></h2>
+            <h2>Add Task</h2>
             <div className="title">
               <label htmlFor="title">Title</label>
               <input id="title" type="text" placeholder="e.g. Take coffee break" />

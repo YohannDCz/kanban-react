@@ -182,16 +182,16 @@ header {
           }
         }
         
-        .addTask {
-
-          .plus {
-            display: none;
-          }
-
-          .addNewTask {
-            display: flex;
-            padding: 14px 25px;
-            color: white;
+        .rightright-info {
+          .addTasks {
+            .plus {
+              display: none !important;
+            }
+            .addNewTask {
+              display: flex;
+              padding: 14px 25px;
+              color: white !important;
+            }
           }
         }
       }
