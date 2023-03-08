@@ -21,6 +21,8 @@ export const handleClickAddTask = (e: any) => {
              e.target.parentElement.className === "cards" ) {
     taskForm.innerText = "Edit Task";
   }
+
+  localStorage.setItem("targetTask", e.target.innerText.replace(/\s/g, ''));
 }
 
 export const handleClickAddBoard = (e: any) => {

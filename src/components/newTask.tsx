@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { handleClickAddTask } from "./header";
 
@@ -10,13 +10,66 @@ export function NewTask(props: any) {
     return initialValue || "";
   });
 
+  const [isEditTask, setIsEditTask] = useState(document.querySelector(".taskForm")?.querySelector("h2").innerText === "Edit Task");
+  
+  // let boardName = document.querySelector(".board.active")?.querySelector("h2").innerText;
+  // let indexBoard: any;
+  // data.boards.find(function(item: any, i:number) {
+  //   if (item.name === boardName) {
+  //     indexBoard = i;
+  //   }
+  // });
+  // const [boardIndex, setBoardIndex] = useState(indexBoard) 
+
+  // let columnName = document.querySelector(".board.active")?..innerText;
+  // let indexColumn: any;
+  // data.boards.find(function(item: any, i:number) {
+  //   if (item.name === columnName) {
+  //     indexColumn = i;
+  //   }
+  // });
+  // const [columnIndex, setColumnIndex] = useState(indexColumn);
+
+  // let taskName = document.querySelector(".board.active")?.querySelector("h2").innerText;
+  // let indexTask: any;
+  // data.boards.find(function(item: any, i:number) {
+  //   if (item.name === taskName) {
+  //     indexTask = i;
+  //   }
+  // });
+  // const [taskIndex, setTaskIndex] = useState(indexTask)
+
+
+  // useEffect(() => {
+  // var headings = document.evaluate(`//h1[contains(., '${task}')]`, document, null, XPathResult.ANY_TYPE, null );
+  // var thisHeading = headings.iterateNext();
+  // console.log(thisHeading);
+
+
+  // })
+  
+
+  useEffect(() => {
+    const editAdd = document.querySelector(".taskForm")?.querySelector("h2").innerText;
+    const title = document.querySelector("#title");
+    const description = document.querySelector("#desription");
+  
+    if (editAdd === "Edit Task") {
+    }
+
+    const task = localStorage.getItem("targetTask");
+    const taskInfo = data.boards.forEach((board: any) => board.columns.forEach((column: any) => column.tasks.find((task1: any) => task1?.classList?.contains(task))))
+    console.log(taskInfo);
+  })
+
+
   return (
     <section className="newTask" style={{display: "none"}}>
       <div className="filter2" onClick={handleClickAddTask}></div>
       <div className="task">
         <div className="box">
           <form id="taskForm" className="taskForm">
-            <h2>Add Task</h2>
+            <h2></h2>
             <div className="title">
               <label htmlFor="title">Title</label>
               <input id="title" type="text" placeholder="e.g. Take coffee break" />
@@ -27,10 +80,12 @@ export function NewTask(props: any) {
             </div>
             <div className="subtasks">
               <label htmlFor="button subtask1 subtask2 subtask3 subtask4 subtask5">Subtasks</label>
-              <div className="subtask subtask1">
-                <input id="subtask1" type="text" placeholder="e.g. Make coffee"/>
+              { isEditTask && data.boards[boardIndex].columns.tasks.subtasks.map((subtask: any, index: number) => {
+              <div className={"subtask subtask" + index}>
+                <input id="subtask1" type="text" value={subtask.title} placeholder="e.g. Make coffee"/>
                 <img src="/icon-cross.svg" alt="" className="cross" />
               </div>
+              })}
               <div className="subtask subtask2">
                 <input id="subtask2" type="text" placeholder="e.g. Drink coffe & smile"/>
                 <img src="/icon-cross.svg" alt="" className="cross" />
