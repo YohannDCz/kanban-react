@@ -57,9 +57,9 @@ export function NewTask(props: any) {
     if (editAdd === "Edit Task") {
     }
 
-    const task = localStorage.getItem("targetTask");
-    const taskInfo = data.boards.forEach((board: any) => board.columns.forEach((column: any) => column.tasks.find((task1: any) => task1?.classList?.contains(task))))
-    console.log(taskInfo);
+    // const task = localStorage.getItem("targetTask");
+    // const taskInfo = data.boards.forEach((board: any) => board.columns.forEach((column: any) => column.tasks.find((task1: any) => task1?.classList?.contains(task))))
+    // console.log(taskInfo);
   })
 
 
