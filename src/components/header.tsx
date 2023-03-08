@@ -3,21 +3,15 @@ import ReactDOM from "react-dom";
 import Panel from "./panel"
 
 export const handleClickAddTask = (e: any) => {
-  const saved: any = localStorage.getItem("data");
-  const initialValue: any = JSON.parse(saved);
-  const data = initialValue || "";
-
   const newTask: any = document.querySelector(".newTask");
   const header: any = document.querySelector("header");
 
   if (newTask.style.display === "none") {
     newTask.style.display = "flex"
     header.style.position = "relative";
-
   } else if (newTask.style.display === "flex") {
     newTask.style.display = "none";
     header.style.position = "sticky";
-
   }
 
   const taskForm: any = document.querySelector("#taskForm")?.querySelector("h2");
@@ -27,7 +21,8 @@ export const handleClickAddTask = (e: any) => {
              e.target.parentElement.className === "cards" ) {
     taskForm.innerText = "Edit Task";
   }
-  // localStorage.setItem("targetTask", e.target.innerText.replace(/\s/g, ''));
+
+  localStorage.setItem("targetTask", e.target.innerText.replace(/\s/g, ''));
 }
 
 export const handleClickAddBoard = (e: any) => {
@@ -85,7 +80,6 @@ function Header(props: any) {
     const width: number = window.innerWidth;
     const todos: any = document.querySelectorAll(".todo-lists");
     const background: any = document.querySelector(".background");
-    const newTask: any = document.querySelector(".newTask");
 
     if (menu.style.display === "none") {
       menu.style.display = "flex";
@@ -95,7 +89,6 @@ function Header(props: any) {
         todos.forEach((todo:any) => todo.style.transform = "translateX(260px)");
         background.style.transform = "translateX(260px)";
         background.style.width = "calc(100vw - 260px)";
-        newTask.style.transform = "translateX(-260px)";
       } else if (width < 620) {
         document.body.style.overflow = "hidden";
       }
@@ -107,7 +100,6 @@ function Header(props: any) {
         todos.forEach((todo:any) => todo.style.transform = "translateX(0)")
         background.style.transform = "translateX(0px)";
         background.style.width = "100vw";
-        newTask.style.transform = "translateX(0px)";
       } else if (width < 620) {
         document.body.style.overflow = "auto";
       }

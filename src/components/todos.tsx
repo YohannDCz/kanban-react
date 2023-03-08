@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import Background from './background';
 import { handleClickAddTask } from './header';
-import { NewTask } from './newTask';
+
 
 export function Todos() {
   const [data, setData] = useState(() => {
@@ -28,13 +28,10 @@ export function Todos() {
             </div>
             <div className="cards">
               {column.tasks.map((task: any) =>
-                <>
-                <div className="card " onClick={handleClickAddTask}>
+                <div className={"card " + task.title.replace(/\s/g, '')} onClick={handleClickAddTask}>
                   <h2>{task.title}</h2>
                   <h3>{task.subtasks.filter((subtask: any) => subtask.isCompleted === true ).length} of {task.subtasks.length} subtasks</h3>
                 </div>
-                <NewTask task={task} />
-                </>
               )}
             </div>
           </div>

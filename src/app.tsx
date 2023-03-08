@@ -31,6 +31,7 @@ function App() {
       <Header />
       <Background />
       <Todos />
+      <NewTask/>
       <NewBoard />
     </>
   )
