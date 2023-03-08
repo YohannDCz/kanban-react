@@ -46,12 +46,12 @@ function Panel(props: any) {
           <div className="all-boards">
             <h1 className="title">All Boards ({num})</h1>
             <div className="boards">
-              {/* {data.boards.map((item: any, i: any) => {
+              {data.boards.map((item: any, i: any) => {
                 return (
                 <div key={i} className="board board1">
                   <img src="/icon-board.svg" alt="" className="board-icon" />
                   <h2 className="sub-title">{item.name}</h2>
-                </div>)})} */}
+                </div>)})}
             </div>
             <div className="addBoards" onClick={props.handleClickAddBoard}>
               <div className="board">

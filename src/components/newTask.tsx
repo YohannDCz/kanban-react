@@ -10,15 +10,15 @@ export function NewTask(props: any) {
     return initialValue || "";
   });
 
-  const [isEditTask, setIsEditTask] = useState(document.querySelector(".taskForm")?.querySelector("h2").innerText === "Edit Task");
+  const [isEditTask, setIsEditTask] = useState(document.querySelector(".taskForm")?.querySelector("h2")?.innerText === "Edit Task");
   
-  // let boardName = document.querySelector(".board.active")?.querySelector("h2").innerText;
-  // let indexBoard: any;
-  // data.boards.find(function(item: any, i:number) {
-  //   if (item.name === boardName) {
-  //     indexBoard = i;
-  //   }
-  // });
+  let boardName = document.querySelector(".board.active")?.querySelector("h2")?.innerText;
+  let indexBoard: any;
+  data.boards.find(function(item: any, i:number) {
+    if (item.name === boardName) {
+      indexBoard = i;
+    }
+  });
   // const [boardIndex, setBoardIndex] = useState(indexBoard) 
 
   // let columnName = document.querySelector(".board.active")?..innerText;
@@ -50,7 +50,7 @@ export function NewTask(props: any) {
   
 
   useEffect(() => {
-    const editAdd = document.querySelector(".taskForm")?.querySelector("h2").innerText;
+    const editAdd = document.querySelector(".taskForm")?.querySelector("h2")?.innerText;
     const title = document.querySelector("#title");
     const description = document.querySelector("#desription");
   
@@ -80,12 +80,12 @@ export function NewTask(props: any) {
             </div>
             <div className="subtasks">
               <label htmlFor="button subtask1 subtask2 subtask3 subtask4 subtask5">Subtasks</label>
-              { isEditTask && data.boards[boardIndex].columns.tasks.subtasks.map((subtask: any, index: number) => {
-              <div className={"subtask subtask" + index}>
-                <input id="subtask1" type="text" value={subtask.title} placeholder="e.g. Make coffee"/>
+              {/* { isEditTask && data.boards[boardIndex].columns.tasks.subtasks.map((subtask: any, index: number) => { */}
+              <div className={"subtask subtask"}>
+                <input id="subtask1" type="text" placeholder="e.g. Make coffee"/>
                 <img src="/icon-cross.svg" alt="" className="cross" />
               </div>
-              })}
+              {/* })} */}
               <div className="subtask subtask2">
                 <input id="subtask2" type="text" placeholder="e.g. Drink coffe & smile"/>
                 <img src="/icon-cross.svg" alt="" className="cross" />
