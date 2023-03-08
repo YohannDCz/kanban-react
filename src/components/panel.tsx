@@ -36,7 +36,11 @@ function Panel(props: any) {
   useEffect(() => {
     const element: any = document.querySelector(".board");
     const dom: any = ReactDOM.findDOMNode(element);
-    dom.className = "board board1 active"
+    dom.classList.add("active");
+
+    const element2: any = document.querySelectorAll(".todo-lists")[0];
+    const dom2: any = ReactDOM.findDOMNode(element2);
+    dom2.classList.add("active");
   })
   
   return (
