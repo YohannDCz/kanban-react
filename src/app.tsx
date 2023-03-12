@@ -9,21 +9,24 @@ import { NewTask } from './components/newTask';
 
 function App() {
   
-  fetch('/data.json')
-      .then((response: any) => response.json())
-      .then((data) => {
-        localStorage.setItem("data", JSON.stringify(data));
-      });
+  // fetch('/data.json')
+  //     .then((response: any) => response.json())
+  //     .then((data) => {
+  //       localStorage.setItem("data", JSON.stringify(data));
+  //     });
 
-  // useEffect(() => {
-  //   try {
-  //     fetch('/src/data.json')
-  //       .then((response: any) => response.json())
-  //       .then((data) => {localStorage.setItem("data", JSON.stringify(data))});
-  //   } catch(err) {
-  //     console.log(err)
-  //   }
-  // }, [])
+  useEffect(() => {
+    async function promiseFunction () {
+      try {
+        const response = await fetch('/src/data.json');
+        const data = response.json();
+        localStorage.setItem("data", JSON.stringify(data))
+      } catch(err) {
+        console.log(err)
+      }
+    }
+    // console.log(localStorage.getItem("data", JSON.parse(data)))
+  }, [])
   
   return (
     <>

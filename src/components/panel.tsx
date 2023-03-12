@@ -10,7 +10,6 @@ function Panel(props: any) {
   
   const [num, setNum] = useState(data.boards.length);
   
-  
   useEffect(() => {
     const boards: any = document.querySelectorAll(".board1");
     const boardName: any = document.querySelector(".board-name")?.querySelector("h1");

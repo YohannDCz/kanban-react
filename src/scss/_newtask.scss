@@ -22,12 +22,12 @@ section {
   
   .task, .board {
     position: absolute;
-    top: 100px;
     background-color: var(--clr-l-1);
     width: 91.47%;
     max-width: 480px;
-    z-index: 1;
+    z-index: revert;
     border-radius: 6px;
+
     .box {
       margin: 24px;
 
@@ -49,11 +49,14 @@ section {
           height: 40px;
           border: 1px solid var(--clr-d-6);
           border-radius: 4px;
+          font-size: 13px;
+          line-height: 23px;
+          font-weight: 500;
+          white-space: normal;
 
           &::placeholder {
             color:rgba(0, 0, 0, 0.25);
             font-weight: 500;
-            font-size: 13px;
           }
         }
 

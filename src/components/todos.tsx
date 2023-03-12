@@ -18,17 +18,17 @@ export function Todos() {
   // const boardName = document.querySelector(".board-name")?.querySelector("h1")?.innerText;
   return (
     <main>
-      {data.boards.map((board: any) => 
-      <div className={'todo-lists ' + board.name}>
+      {data.boards.map((board: any, index: number) => 
+      <div key={index} className={'todo-lists ' + board.name}>
         {board.columns.map((column: any, index: number) =>
-          <div className={'todo-list ' + column.name}>
+          <div key={index} className={'todo-list ' + column.name}>
             <div className='todo-title'>
               <div className="todo-color" style={{backgroundColor: color[index]}}></div>
               <h1>{column.name} ({column.tasks.length})</h1>
             </div>
             <div className="cards">
               {column.tasks.map((task: any, index: number) =>
-                <TodoCard key={index} tasks={column.tasks} task={task} index={index} handleClickAddTask={handleClickAddTask}/>
+                <TodoCard key={index} task={task} tasks={column.tasks} index={index} handleClickAddTask={handleClickAddTask}/>
               )}
             </div>
           </div>

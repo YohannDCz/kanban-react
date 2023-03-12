@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import Panel from "./panel"
 
 export const handleClickAddTask = (e: any) => {
-  const saved: any = localStorage.getItem("tasks");
+  const saved: any = localStorage.getItem("task");
   const initialValue: any = JSON.parse(saved);
   const data = initialValue || "";
 
@@ -25,12 +25,23 @@ export const handleClickAddTask = (e: any) => {
     taskForm.innerText = "Edit Task";
   }
 
-  //  let division = e.target.innerText;
-    //     let index: any;
-    //     let indexJSON = data.boards.find(function(item: any, i:number){
-    //       if (item.name === division) {
-    //         index = i;
-    //       }
+  // async function mounting(e) {
+  //   const saved: any = localStorage.getItem("tasks");
+  //   const initialValue: any = await JSON.parse(saved);
+  //   let tasks = initialValue || "";
+  //   let index;
+  //   let cardClassName: string = e.target.parentElement.classList[1];
+  //   console.log(cardClassName)
+  //   console.log(tasks);
+  //   let indexJSON = tasks.find(function(task: any, i:number){
+  //     let taskName = task.title.replace(/\s/g, '');
+  //     if (taskName === cardClassName) {
+  //       index = i;
+  //       console.log(index);
+  //     }
+  //   })
+  // }
+  // mounting(e)
 }
 
 export const handleClickAddBoard = (e: any) => {
