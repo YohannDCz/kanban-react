@@ -3,6 +3,10 @@ import ReactDOM from "react-dom";
 import Panel from "./panel"
 
 export const handleClickAddTask = (e: any) => {
+  const saved: any = localStorage.getItem("tasks");
+  const initialValue: any = JSON.parse(saved);
+  const data = initialValue || "";
+
   const newTask: any = document.querySelector(".newTask");
   const header: any = document.querySelector("header");
 
@@ -15,14 +19,18 @@ export const handleClickAddTask = (e: any) => {
   }
 
   const taskForm: any = document.querySelector("#taskForm")?.querySelector("h2");
-  if (e.target.parentElement.className === "addTasks") {
-      taskForm.innerText = "Add Task";
-  } else if (e.target.parentElement.className === "card" ||
-             e.target.parentElement.className === "cards" ) {
+  if (e.currentTarget.className === "addTasks") {
+    taskForm.innerText = "Add Task";
+  } else if (e.currentTarget.classList.contains("card")) {
     taskForm.innerText = "Edit Task";
   }
 
-  localStorage.setItem("targetTask", e.target.innerText.replace(/\s/g, ''));
+  //  let division = e.target.innerText;
+    //     let index: any;
+    //     let indexJSON = data.boards.find(function(item: any, i:number){
+    //       if (item.name === division) {
+    //         index = i;
+    //       }
 }
 
 export const handleClickAddBoard = (e: any) => {
@@ -56,6 +64,12 @@ export const handleClickAddBoard = (e: any) => {
 
 function Header(props: any) {
   const [background, setBackground] = useState("#635FC7");
+  const [tasks, setTasks] = useState(document.querySelectorAll(".card"));
+
+  useEffect(() => {
+    tasks.forEach((task) => task.addEventListener("click", handleClickAddTask));
+    return () => tasks.forEach((task) => task.removeEventListener("click", handleClickAddTask));
+  })
   
   const handleClickHeader = () => {
     // fetch('/src/data.json')

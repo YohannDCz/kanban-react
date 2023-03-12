@@ -48,6 +48,22 @@ export function NewTask(props: any) {
 
   // })
   
+  // useEffect(() => {
+  //   const getPathForUid: any = (uid: any,obj: any,thisPath = []) => {
+
+  //   if(Array.isArray(obj)) {
+  //       return obj.reduce((acc,item,idx) => getPathForUid(uid,item,thisPath.concat(idx)),[]);
+  //   }
+
+  //   return obj[uid] === uid ? thisPath : getPathForUid(uid,obj.children,thisPath.concat('children'));
+
+  // }
+
+  // const object = getPathForUid("Build UI for onboarding flow", data);
+
+  // console.log(object);
+  // })
+  
 
   useEffect(() => {
     const editAdd = document.querySelector(".taskForm")?.querySelector("h2")?.innerText;
@@ -69,7 +85,7 @@ export function NewTask(props: any) {
       <div className="task">
         <div className="box">
           <form id="taskForm" className="taskForm">
-            <h2></h2>
+            <h2>Edit Task</h2>
             <div className="title">
               <label htmlFor="title">Title</label>
               <input id="title" type="text" placeholder="e.g. Take coffee break" />

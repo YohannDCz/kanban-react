@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/header'
 import Background from './components/background';
 import { Todos } from './components/todos';
@@ -18,12 +18,11 @@ function App() {
   // useEffect(() => {
   //   try {
   //     fetch('/src/data.json')
-  //     .then((response: any) => response.json())
-  //     .then((data) => {localStorage.setItem("data", JSON.stringify(data))});
+  //       .then((response: any) => response.json())
+  //       .then((data) => {localStorage.setItem("data", JSON.stringify(data))});
   //   } catch(err) {
   //     console.log(err)
   //   }
-  //   console.log("ok");
   // }, [])
   
   return (
