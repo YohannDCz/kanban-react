@@ -25,24 +25,20 @@ export const handleClickAddTask = (e: any) => {
     taskForm.innerText = "Edit Task";
   }
 
-  // async function mounting(e) {
-  //   const saved: any = localStorage.getItem("tasks");
-  //   const initialValue: any = await JSON.parse(saved);
-  //   let tasks = initialValue || "";
-  //   let index;
-  //   let cardClassName: string = e.target.parentElement.classList[1];
-  //   console.log(cardClassName)
-  //   console.log(tasks);
-  //   let indexJSON = tasks.find(function(task: any, i:number){
-  //     let taskName = task.title.replace(/\s/g, '');
-  //     if (taskName === cardClassName) {
-  //       index = i;
-  //       console.log(index);
-  //     }
-  //   })
-  // }
-  // mounting(e)
+
+  const task = e.currentTarget
+  const column = task.parentElement.parentElement;
+  const board = column.parentElement;
+  const indexes = {
+    taskIndex: task.id,
+    columnIndex: column.id,
+    boardIndex: board.id
+  }
+
+  localStorage.setItem('indexes', JSON.stringify(indexes));
+
 }
+
 
 export const handleClickAddBoard = (e: any) => {
   const newBoard: any = document.querySelector(".newBoard");

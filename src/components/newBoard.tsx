@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { handleClickAddTask } from "./header";
 import { handleClickAddBoard } from "./header";
 
-export function NewBoard() {
+export function NewBoard(props: any) {
   const [data, setData] = useState(() => {
     const saved: any = localStorage.getItem("data");
     const initialValue: any = JSON.parse(saved);

@@ -1,24 +1,18 @@
-import React, { useEffect} from "react"
+import React, { useState, useEffect } from "react"
 import { ReactDOM } from "react"
 
 
 export function TodoCard(props: any) {
-  
-  const task: any = props.task;
-  const tasks: any = props.tasks;
+  const [task, setTask] = useState(props.task);
+  const [tasks, setTasks] = useState(props.tasks)
 
-  useEffect(() => {
-    localStorage.setItem("task", JSON.stringify(task));
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [task, tasks])
-  
-
-  .getAttribute('key')
+  localStorage.setItem("task", JSON.stringify(task));
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 
   return (
-    <div className={"card " + props.task.title.replace(/\s/g, '')} onClick={props.handleClickAddTask}>
+    <div id={props.id} className={"card " + props.task.title.replace(/\s/g, '')} onClick={props.handleClickAddTask}>
       <h2>{props.task.title}</h2>
-      <h3>{props.task.subtasks.filter((subtask: any) => subtask.isCompleted === true ).length} of {task.subtasks.length} subtasks</h3>
+      <h3>{props.task.subtasks.filter((subtask: any) => subtask.isCompleted === true ).length} of {props.task.subtasks.length} subtasks</h3>
     </div>
   )
 }
