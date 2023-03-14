@@ -9,12 +9,13 @@ export const handleClickAddTask = (e: any) => {
 
   const newTask: any = document.querySelector(".newTask");
   const header: any = document.querySelector("header");
+  const editTaskPanel: any = document.querySelector(".editTaskPanel")
 
   if (newTask.style.display === "none") {
     newTask.style.display = "flex"
     header.style.position = "relative";
   } else if (newTask.style.display === "flex") {
-    newTask.style.display = "none";
+    newTask.style.display = 'none';
     header.style.position = "sticky";
   }
 
@@ -79,21 +80,6 @@ function Header(props: any) {
   })
   
   const handleClickHeader = () => {
-    // fetch('/src/data.json')
-    //   .then((text) => text.json())
-    //   .then((data) => {
-    //     let division = e.target.innerText;
-    //     let index: any;
-    //     let indexJSON = data.boards.find(function(item: any, i:number){
-    //       if (item.name === division) {
-    //         index = i;
-    //       }
-    //     });
-
-    //     let isActive = !(data.boards[index].columns.length > 0);
-    //     if (isActive) {
-    //         setBackground("#A8A4FF");
-    //     }
 
     const menu: any = document.querySelector('nav')
     const downchevron: any = document.querySelector('.downchevron');

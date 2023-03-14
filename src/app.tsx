@@ -4,6 +4,7 @@ import Background from './components/background';
 import { Todos } from './components/todos';
 import { NewBoard } from './components/newBoard';
 import { NewTask } from './components/newTask';
+import Task from './components/task';
 // require('isomorphic-fetch');
 
 
@@ -36,6 +37,7 @@ function App() {
       <Todos />
       <NewTask/>
       <NewBoard />
+      <Task />
     </>
   )
 }

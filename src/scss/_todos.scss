@@ -10,12 +10,12 @@ main {
 
   .todo-lists {
     display: none;
-    flex-wrap: wrap;
+    flex-direction: row;
     margin-bottom: 48px;
     height: fit-content;
 
     &.active {
-      display: flex
+      display: flex;
     }
   }
   .todo-list:last-child {
@@ -81,11 +81,13 @@ main {
     .add-column {
       width: 100%;
       height: 100%;
+      min-height: 600px;
       background: linear-gradient(180deg, #E9EFFA 0%, rgba(233, 239, 250, 0.5) 100%);
       display: flex;
       justify-content: center;
       align-items: center;
       border-radius: 6px;
+
       p {
         color: var(--clr-d-5);
         font-size: 24px;

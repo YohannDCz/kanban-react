@@ -23,21 +23,36 @@ export function NewTask(props: any) {
     setIndexes(initialValue || "");
   })
 
-  console.log(indexes);
-
   const [editAdd, setEditAdd] = useState(document.querySelector(".taskForm")?.querySelector("h2")?.innerText === "Add Task");
   const [task, setTask] = useState(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
   
   useEffect(() => {
-    return setTask(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex])
-  })// console.log(task)
+    setTask(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex])
+  })
   
-  console.log(data)
   console.log(task)
+  
+  useEffect(() => {
+    const newTask: any = document.querySelector(".newTask");
+    const filter: any = document.querySelector(".filter2");
+    const panel: any = document.querySelector(".editTaskPanel");
+
+    const panelHeight = panel.offsetHeight;
+
+    if (panelHeight > window.innerHeight) {
+      filter.style.height = panelHeight * 1.1 + "px"; 
+      newTask.style.height = panelHeight * 1.1 + "px"; 
+      document.body.style.overflow = "scroll";
+    } else {
+      filter.style.height = "100vh";
+      newTask.style.height = "100vh";
+      document.body.style.overflow = "hidden";
+    }
+  })
   return (
     <section className="newTask" style={{display: "none"}}>
       <div className="filter2" onClick={handleClickAddTask}></div>
-      <div className="task">
+      <div className="editTaskPanel">
         <div className="box">
           <form id="taskForm" className="taskForm">
             <h2>Action Task</h2>

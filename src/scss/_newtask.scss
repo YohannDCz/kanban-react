@@ -1,26 +1,26 @@
-section {
+.newTask {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 0;
+  bottom: 0;
+  top:0;
   right: 0;
   left: 0;
   z-index: 999;
-
+  
   .filter2 {
     position: absolute;
-    top: 0;
-    bottom: 0;
+    justify-self: stretch;
     right: 0;
     left: 0;
-    height: 100vh;
+    top: 0;
+    bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 0;
   }
-  
-  .task, .board {
+
+  .editTaskPanel, .board, .taskPanel {
     position: absolute;
     background-color: var(--clr-l-1);
     width: 91.47%;
@@ -139,7 +139,7 @@ section {
 
     height: 100%;
     
-    .task, .board {
+    .editTaskPanel, .board {
       margin: auto;
     }
   }
