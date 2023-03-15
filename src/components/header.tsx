@@ -7,15 +7,15 @@ export const handleClickAddTask = (e: any) => {
   const initialValue: any = JSON.parse(saved);
   const data = initialValue || "";
 
-  const newTask: any = document.querySelector(".newTask");
+  const taskPanel: any = document.querySelector(".task");
   const header: any = document.querySelector("header");
   const editTaskPanel: any = document.querySelector(".editTaskPanel")
 
-  if (newTask.style.display === "none") {
-    newTask.style.display = "flex"
+  if (taskPanel.style.display === "none") {
+    taskPanel.style.display = "flex"
     header.style.position = "relative";
-  } else if (newTask.style.display === "flex") {
-    newTask.style.display = 'none';
+  } else if (taskPanel.style.display === "flex") {
+    taskPanel.style.display = 'none';
     header.style.position = "sticky";
   }
 

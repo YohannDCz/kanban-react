@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import { isUint8ClampedArray } from 'util/types';
 import { handleClickAddTask } from './header';
 
 export default function Task(props: any) {
@@ -23,44 +24,54 @@ export default function Task(props: any) {
     setIndexes(initialValue || "");
   })
 
-  console.log(indexes);
-
   const [editAdd, setEditAdd] = useState(document.querySelector(".taskForm")?.querySelector("h2")?.innerText === "Add Task");
   const [task, setTask] = useState(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
   
   useEffect(() => {
     return setTask(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex])
-  })// console.log(task)
-  
-  console.log(data)
-  console.log(task)
+  })
 
+  useEffect(() => {
+    const selected: any = document.querySelector(".selected");
+    const options: any = document.querySelector(".options");
+    const state: any = document.querySelector(".state");
+
+    console.log(selected);
+    console.log(options);
+    console.log(state);
+
+    selected.addEventListener("click", function() {
+      if (options.style.display === "none") {
+        options.style.display === "block";
+      } else if (options.style.display === "block") {
+        options.style.display === "none";
+      }
+    })
+
+    state.addEventListener("click", function() {
+      options.style.display = "none";
+    })
+  })
   return (
-    <section className='task'>
+    <section className='task' style={{display: "none"}}>
       <div className="filter3" onClick={handleClickAddTask}></div>
       <div className="taskPanel">
         <div className="box">
-          <h2 className="title">Research pricing points of various competitors and trial different business models</h2>
-          <h3 className="description">We know what we're planning to build for version one. Now we need to finalise the first pricing model we'll use. Keep iterating the subtasks until we have a coherent proposition.</h3>
+          <h2 className="title">{task?.title}</h2>
+          <h3 className="description">{task?.description}</h3>
           <div className="subtasks">
-            <h3 className="title">Subtasks (2 of 3)</h3>
-            <div className="subtask">
-              <input type="checkbox" className="checkbox" id="checkbox1" />
-              <label htmlFor="checkbox1">Research competitor pricing and business models</label>
-            </div>
-            <div className="subtask">
-              <input type="checkbox" className="checkbox" id="checkbox2" />
-              <label className="title" htmlFor="checkbox2">Outline a business model that works for our solution</label>
-            </div>
-            <div className="subtask">
-              <input type="checkbox" className="checkbox" id="checkbox3" />
-              <label className="title" htmlFor="checkbox3">Talk to potential customers about our proposed solution and ask for fair price expectancy</label>
-            </div>
+            <h3 className="title">Subtasks ({task?.subtasks.filter((subtask: any) => subtask.isCompleted === "true").length} of {task?.subtasks.length})</h3>
+            {task?.subtasks.map((subtask: any, index: any) => 
+              <div className="subtask">
+                <input type="checkbox" className="checkbox" id={"checkbox" + index} />
+                <label htmlFor={"checkbox" + index}>{subtask?.title}</label>
+              </div>
+            )}
           </div>
           <div className="status">
             <h3 className="title">Current Status</h3>
             <div className="selected">
-              <h3>Doing</h3>
+              <h3>{task?.status}</h3>
               <img src="/icon-chevron-down.svg" alt="The down chevron" />
             </div>
             <div className="options">

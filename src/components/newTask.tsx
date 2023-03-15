@@ -30,8 +30,6 @@ export function NewTask(props: any) {
     setTask(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex])
   })
   
-  console.log(task)
-  
   useEffect(() => {
     const newTask: any = document.querySelector(".newTask");
     const filter: any = document.querySelector(".filter2");
