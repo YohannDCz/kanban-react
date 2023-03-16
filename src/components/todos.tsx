@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import Background from './background';
-import { handleClickAddTask } from './header';
+import { handleClickTask } from './header';
 import { NewTask } from './newTask';
 import { TodoCard } from './todocard';
 
@@ -28,7 +28,7 @@ export function Todos(props: any) {
             </div>
             <div className="cards">
               {column.tasks.map((task: any, index3: any) =>
-                <TodoCard id={index3} task={task} tasks={column.tasks} handleClickAddTask={handleClickAddTask}/>
+                <TodoCard id={index3} task={task} tasks={column.tasks} handleClickTask={handleClickTask}/>
               )}
             </div>
           </div>

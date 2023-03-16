@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { handleClickTask } from './header';
+import EditDeleteTask from './editDeleteTask';
 
 export default function Task(props: any) {
 
@@ -58,12 +59,25 @@ export default function Task(props: any) {
     })
   })
 
+  const handleClickEditTask = () => {
+    const editDelete: any = document.querySelector("#editDeleteTask");
+
+    if (editDelete?.style.display === "none") {
+      editDelete.style.display = "flex";
+    } else if (editDelete?.style.display === "flex") {
+      editDelete.style.display = "none";
+    }
+  }
   return (
     <section className='task' style={{display: "none"}}>
       <div className="filter3" onClick={handleClickTask}></div>
       <div className="taskPanel">
         <div className="box">
-          <h2 className="title">{task?.title}</h2>
+          <div className="up-info">
+            <h2 className="title">{task?.title}</h2>
+            <img src="/icon-vertical-ellipsis.svg" alt="The menu." onClick={handleClickEditTask}/>
+            <EditDeleteTask />
+          </div>
           <h3 className="description">{task?.description}</h3>
           <div className="subtasks">
             <h3 className="title">Subtasks ({task?.subtasks.filter((subtask: any) => subtask.isCompleted === "true").length} of {task?.subtasks.length})</h3>

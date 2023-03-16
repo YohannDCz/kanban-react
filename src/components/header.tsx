@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import ReactDOM from "react-dom";
 import Panel from "./panel"
+import EditDeleteBoard from "./editDeleteBoard";
 
 export const handleClickTask = (e: any) => {
   const saved: any = localStorage.getItem("task");
@@ -129,6 +130,16 @@ function Header(props: any) {
   }
 
   window.addEventListener("resize", displayShow1);
+
+  const handleClickEditBoard = () => {
+    const editDelete: any = document.querySelector("#editDeleteBoard");
+
+    if (editDelete?.style.display === "none") {
+      editDelete.style.display = "flex";
+    } else if (editDelete?.style.display === "flex") {
+      editDelete.style.display = "none";
+    }
+  }
   return (
     <header>
       <div className="header"></div>
@@ -155,7 +166,8 @@ function Header(props: any) {
               <img src="/icon-add-task-mobile.svg" alt="Plus" className="plus" />
               <h2 className="addNewTask">+ Add New Task</h2>
             </button>
-            <img className="editBoards" src="/icon-vertical-ellipsis.svg" alt="Drop down menu." onClick={handleClickAddBoard}/>
+            <img className="editBoards" src="/icon-vertical-ellipsis.svg" alt="Drop down menu." onClick={handleClickEditBoard}/>
+            <EditDeleteBoard />
           </div>
         </div>
       </div>

@@ -38,13 +38,26 @@
         white-space: pre-wrap;
       }
 
-      > h2 {
-        font-size: 18px;
-        font-weight: 700;
-        line-height: 22.68px;
-        margin: 32px 32px 0;
-        align-self: flex-start;
+      .up-info {
+        width: 415.62px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 32px;
+        
+        > h2 {
+          font-size: 18px;
+          font-weight: 700;
+          line-height: 22.68px;
+          align-self: flex-start;
+        }
+
+        img {
+          height: 20px;
+        }
       }
+      
 
       > h3 {
         font-size: 13px;

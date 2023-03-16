@@ -10,7 +10,7 @@ export function TodoCard(props: any) {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 
   return (
-    <div id={props.id} className={"card " + props.task.title.replace(/\s/g, '')} onClick={props.handleClickAddTask}>
+    <div id={props.id} className={"card " + props.task.title.replace(/\s/g, '')} onClick={props.handleClickTask}>
       <h2>{props.task.title}</h2>
       <h3>{props.task.subtasks.filter((subtask: any) => subtask.isCompleted === true ).length} of {props.task.subtasks.length} subtasks</h3>
     </div>
