@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import ReactDOM from "react-dom";
 import Panel from "./panel"
 
-export const handleClickAddTask = (e: any) => {
+export const handleClickTask = (e: any) => {
   const saved: any = localStorage.getItem("task");
   const initialValue: any = JSON.parse(saved);
   const data = initialValue || "";
@@ -75,8 +75,8 @@ function Header(props: any) {
   const [tasks, setTasks] = useState(document.querySelectorAll(".card"));
 
   useEffect(() => {
-    tasks.forEach((task) => task.addEventListener("click", handleClickAddTask));
-    return () => tasks.forEach((task) => task.removeEventListener("click", handleClickAddTask));
+    tasks.forEach((task) => task.addEventListener("click", handleClickTask));
+    return () => tasks.forEach((task) => task.removeEventListener("click", handleClickTask));
   })
   
   const handleClickHeader = () => {
@@ -139,7 +139,7 @@ function Header(props: any) {
         <div className="box2">
           <img src="/logo-dark.svg" alt="" className="logotype" />
         </div>
-        <Panel handleClickAddBoard={handleClickAddBoard} handleClickAddTask={handleClickAddTask} handleClickHeader={handleClickHeader} />
+        <Panel handleClickAddBoard={handleClickAddBoard} handleClickTask={handleClickTask} handleClickHeader={handleClickHeader} />
         <div className="show" onClick={handleClickHeader}>
           <img src="/icon-show-sidebar.svg" alt="" className="eye-open" />
         </div>
@@ -151,7 +151,7 @@ function Header(props: any) {
             <img src="/icon-chevron-down.svg" alt="The down chevron." className="downchevron"/>
           </div>
           <div className="rightright-info">
-            <button className="addTasks" onClick={handleClickAddTask} style={{backgroundColor: background}}>
+            <button className="addTasks" onClick={handleClickTask} style={{backgroundColor: background}}>
               <img src="/icon-add-task-mobile.svg" alt="Plus" className="plus" />
               <h2 className="addNewTask">+ Add New Task</h2>
             </button>

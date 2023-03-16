@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { handleClickAddTask } from "./header";
 import { handleClickAddBoard } from "./header";
 
 export function NewBoard(props: any) {

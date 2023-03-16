@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { handleClickAddTask } from './header';
+import { handleClickTask } from './header';
 
 export default function Task(props: any) {
 
@@ -60,7 +60,7 @@ export default function Task(props: any) {
 
   return (
     <section className='task' style={{display: "none"}}>
-      <div className="filter3" onClick={handleClickAddTask}></div>
+      <div className="filter3" onClick={handleClickTask}></div>
       <div className="taskPanel">
         <div className="box">
           <h2 className="title">{task?.title}</h2>
