@@ -67,7 +67,7 @@
           margin-bottom: 16px;
         }
 
-        .subtask {
+        .subtask1 {
           display: flex;
           align-items: center;
           background-color: var(--clr-l-2);
@@ -95,13 +95,13 @@
           }
         }
 
-        .subtask:first-of-type{
+        .subtask1:first-of-type{
           margin: 0;
         }
 
-        .subtask:hover {
-          background-color: rgba(99, 95, 199, 0.25);
-        }
+        // .subtask:hover {
+        //   background-color: rgba(99, 95, 199, 0.25);
+        // }
       }
       .status {
         position: relative;
@@ -141,7 +141,7 @@
         }
 
         .options {
-          display: none;
+          display: block;
           position: absolute;
           top: 75px;
           width: 416px;

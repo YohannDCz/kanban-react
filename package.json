@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "firebase": "^8.10.1",
     "flat": "^5.0.2",
     "isomorphic-fetch": "^3.0.0",
     "json-unflat": "^2.0.2",

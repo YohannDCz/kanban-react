@@ -113,7 +113,7 @@ function Header(props: any) {
     }
   }
 
-  const displayShow = () => {
+  const displayShow1 = () => {
     const width: number = window.innerWidth;
     const show: any = document.querySelector(".show");
     const menu: any = document.querySelector("nav")
@@ -128,7 +128,7 @@ function Header(props: any) {
     }
   }
 
-  window.addEventListener("resize", displayShow);
+  window.addEventListener("resize", displayShow1);
   return (
     <header>
       <div className="header"></div>
