@@ -10,13 +10,19 @@ export const handleClickTask = (e: any) => {
 
   const taskPanel: any = document.querySelector(".task");
   const header: any = document.querySelector("header");
-  const editTaskPanel: any = document.querySelector(".editTaskPanel")
+  const newTask: any = document.querySelector(".newTask")
 
   if (taskPanel.style.display === "none") {
-    taskPanel.style.display = "flex"
+    if (newTask.style.display === "none") {
+      taskPanel.style.display = "flex";
+    } else if (newTask.style.display === "flex") {
+      newTask.style.display = "none";
+    }
     header.style.position = "relative";
   } else if (taskPanel.style.display === "flex") {
-    taskPanel.style.display = 'none';
+    if (newTask.style.display === "none") {
+      taskPanel.style.display = 'none';
+    }
     header.style.position = "sticky";
   }
 
