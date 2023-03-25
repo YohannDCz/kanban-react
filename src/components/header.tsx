@@ -3,10 +3,20 @@ import ReactDOM from "react-dom";
 import Panel from "./panel"
 import EditDeleteBoard from "./editDeleteBoard";
 
+export const handleClickAddTask = (e: any) => {
+  const newTask: any = document.querySelector(".newTask");
+  const h2 = newTask.querySelector("h2");
+
+  h2.innerText = "Add New Task"
+
+  if (newTask.style.display === "none") {
+    newTask.style.display = "flex";
+  } else if (newTask.style.display === "flex") {
+    newTask.style.display = "none";
+  }
+}
+
 export const handleClickTask = (e: any) => {
-  const saved: any = localStorage.getItem("task");
-  const initialValue: any = JSON.parse(saved);
-  const data = initialValue || "";
 
   const taskPanel: any = document.querySelector(".task");
   const header: any = document.querySelector("header");
@@ -25,14 +35,6 @@ export const handleClickTask = (e: any) => {
     }
     header.style.position = "sticky";
   }
-
-  const taskForm: any = document.querySelector("#taskForm")?.querySelector("h2");
-  if (e.currentTarget.className === "addTasks") {
-    taskForm.innerText = "Add Task";
-  } else if (e.currentTarget.classList.contains("card")) {
-    taskForm.innerText = "Edit Task";
-  }
-
 
   const task = e.currentTarget
   const column = task.parentElement.parentElement;
@@ -146,6 +148,7 @@ function Header(props: any) {
       editDelete.style.display = "none";
     }
   }
+  
   return (
     <header>
       <div className="header"></div>
@@ -168,7 +171,7 @@ function Header(props: any) {
             <img src="/icon-chevron-down.svg" alt="The down chevron." className="downchevron"/>
           </div>
           <div className="rightright-info">
-            <button className="addTasks" onClick={handleClickTask} style={{backgroundColor: background}}>
+            <button className="addTasks" onClick={handleClickAddTask} style={{backgroundColor: background}}>
               <img src="/icon-add-task-mobile.svg" alt="Plus" className="plus" />
               <h2 className="addNewTask">+ Add New Task</h2>
             </button>

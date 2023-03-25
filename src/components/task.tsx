@@ -26,19 +26,20 @@ export default function Task(props: any) {
   const [task, setTask] = useState(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
   const [columns, setColumns] = useState(data?.boards[indexes.boardIndex]?.columns)
   ;
+
   useEffect(() => {
     setTask(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
     setColumns(data?.boards[indexes.boardIndex]?.columns)
   })
 
-  const options: any = document.querySelector(".options");
   function displayShow() {
-      if (options?.style.display === "none") {
-        options.style.display = "block";
-      } else if (options?.style.display === "block") {
-        options.style.display = "none";
-      }
+    const options: any = document.querySelector(".options");
+    if (options?.style.display === "none") {
+      options.style.display = "block";
+    } else if (options?.style.display === "block") {
+      options.style.display = "none";
     }
+  }
 
     
   useEffect(() => {

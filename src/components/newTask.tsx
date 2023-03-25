@@ -25,9 +25,11 @@ export function NewTask(props: any) {
 
   const [editAdd, setEditAdd] = useState(document.querySelector(".taskForm")?.querySelector("h2")?.innerText === "Add Task");
   const [task, setTask] = useState(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
+  const [columns, setColumns] = useState(data?.boards[indexes.boardIndex]?.columns)
   
   useEffect(() => {
     setTask(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex])
+    setColumns(data?.boards[indexes.boardIndex]?.columns)
   })
   
   useEffect(() => {
@@ -47,13 +49,24 @@ export function NewTask(props: any) {
       document.body.style.overflow = "hidden";
     }
   })
+
+  function displayShow() {
+    const options: any = document.querySelector(".options");
+    if (options?.style.display === "none") {
+      options.style.display = "block";
+    } else if (options?.style.display === "block") {
+      options.style.display = "none";
+    }
+  }
+
   return (
     <section className="newTask" style={{display: "none"}}>
       <div className="filter2" onClick={handleClickTask}></div>
       <div className="editTaskPanel">
         <div className="box">
           <form id="taskForm" className="taskForm">
-            <h2>Action Task</h2>
+            {editAdd && <h2>Add Task</h2>}
+            {!editAdd && <h2>Edit Task</h2>}
             <div className="title">
               <label htmlFor="title">Title</label>
               {editAdd && <input id="title" type="text" placeholder="e.g. Take coffee break" />}
@@ -76,10 +89,15 @@ export function NewTask(props: any) {
               <button id="button">+ Add New Subtask</button>
             </div>
             <div className="status">
-              <label htmlFor="status1">Status</label>
-              <div id="status1">
-                <h3>Todo</h3>
-              <img src="/icon-chevron-up.svg" alt="" className="downchevron1" style={{transform: "rotate(180deg)"}} />
+              <h3 className="title">Current Status</h3>
+              <div className="selected" onClick={displayShow}>
+                <h3>{task?.status}</h3>
+                <img src="/icon-chevron-down.svg" alt="The down chevron" />
+              </div>
+              <div className="options" style={{display: "none"}}>
+                {columns?.map((column: any, index: any) =>
+                  <h3 className={'state state' + index} onClick={displayShow}>{column.name}</h3>
+                )}
               </div>
             </div>
           </form>

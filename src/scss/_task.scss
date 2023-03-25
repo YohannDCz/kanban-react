@@ -33,7 +33,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-
+      margin: 0 32px;
       h2, h3, h4 {
         white-space: pre-wrap;
       }
@@ -116,69 +116,69 @@
         //   background-color: rgba(99, 95, 199, 0.25);
         // }
       }
-      .status {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        width: 416px;
-        margin-top: 24px;
+    }
+  }
+}
 
-        h3.title {
-          font-size: 12px;
-          font-weight: 700;
-          line-height: 15.12px;
-          color: var(--clr-d-5);
-          margin-bottom: 8px;
-        }
+.status {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 24px;
 
-        .selected {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          height: 40px;
-          width: 100%;
-          border: 1px solid #828FA340;
-          border-radius: 4px;
-          margin-bottom: 32px;
+  h3.title {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 15.12px;
+    color: var(--clr-d-5);
+    margin-bottom: 8px;
+  }
 
-          h3 {
-            font-size: 13px;
-            font-weight: 500;
-            line-height: 23px;
-            margin: 8px 16px; 
-          }
+  .selected {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    width: 100%;
+    border: 1px solid #828FA340;
+    border-radius: 4px;
+    margin-bottom: 32px;
 
-          img {
-            margin: 16.75px;
-          }
-        }
+    h3 {
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 23px;
+      margin: 8px 16px; 
+    }
 
-        .options {
-          display: block;
-          position: absolute;
-          top: 75px;
-          width: 416px;
-          background-color: var(--clr-l-1);
-          border-radius: 8px;
-          .state {
-            color: var(--clr-d-5);
-            font-size: 13px;
-            font-weight: 500;
-            line-height: 23px;
-            margin: 8px 16px;
+    img {
+      margin: 16.75px;
+    }
+  }
 
-          }
-          
-          .state:first-of-type {
-            margin-top: 16px;
-          }
-  
-          .state:last-of-type {
-            margin-bottom: 16px;
-          }
-        }
+  .options {
+    display: block;
+    position: absolute;
+    top: 75px;
+    width: 416px;
+    background-color: var(--clr-l-1);
+    border-radius: 8px;
+    .state {
+      color: var(--clr-d-5);
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 23px;
+      margin: 8px 16px;
 
-      }
+    }
+    
+    .state:first-of-type {
+      margin-top: 16px;
+    }
+
+    .state:last-of-type {
+      margin-bottom: 16px;
     }
   }
 }
