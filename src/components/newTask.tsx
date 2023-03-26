@@ -31,7 +31,9 @@ export function NewTask(props: any) {
   useEffect(() => {
     setTask(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
     setColumns(data?.boards[indexes.boardIndex]?.columns);
-    setBoard(Number(document.querySelector(".board.board1.active")?.id));
+    setBoard(() => {
+      const activeId: any = document.querySelector(".board.board1.active")?.id
+      return parseInt(activeId)});
   })
 
   useEffect(() => {
