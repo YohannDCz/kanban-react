@@ -19,16 +19,16 @@ export function Todos(props: any) {
   return (
     <main>
       {data.boards.map((board: any, index1: any) => 
-      <div id={index1} className={'todo-lists ' + board.name}>
+      <div key={index1} id={index1} className={'todo-lists ' + board.name}>
         {board.columns.map((column: any, index2: any) =>
-          <div id={index2} className={'todo-list ' + column.name}>
+          <div key={index2} id={index2} className={'todo-list ' + column.name}>
             <div className='todo-title'>
               <div className="todo-color" style={{backgroundColor: color[index2]}}></div>
               <h1>{column.name} ({column.tasks.length})</h1>
             </div>
             <div className="cards">
               {column.tasks.map((task: any, index3: any) =>
-                <TodoCard id={index3} task={task} tasks={column.tasks} handleClickTask={handleClickTask}/>
+                <TodoCard key={index3} id={index3} task={task} tasks={column.tasks} handleClickTask={handleClickTask}/>
               )}
             </div>
           </div>

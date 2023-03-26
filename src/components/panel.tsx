@@ -51,7 +51,7 @@ function Panel(props: any) {
             <div className="boards">
               {data.boards.map((item: any, i: any) => {
                 return (
-                <div key={i} className="board board1">
+                <div key={i} id={i} className="board board1">
                   <img src="/icon-board.svg" alt="" className="board-icon" />
                   <h2 className="sub-title">{item.name}</h2>
                 </div>)})}

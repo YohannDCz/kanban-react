@@ -32,15 +32,14 @@ export default function Task(props: any) {
     setColumns(data?.boards[indexes.boardIndex]?.columns)
   })
 
-  function displayShow() {
-    const options: any = document.querySelector(".options");
-    if (options?.style.display === "none") {
-      options.style.display = "block";
-    } else if (options?.style.display === "block") {
-      options.style.display = "none";
+  const displayShow = (e: any) => {
+    const options: any = e.target.nextElementSibling;
+      if (options?.style.display === "none") {
+        options.style.display = "block";
+      } else if (options?.style.display === "block") {
+        options.style.display = "none";
+      }
     }
-  }
-
     
   useEffect(() => {
     const subtasks: any = document.querySelectorAll(".subtask1");
@@ -69,6 +68,7 @@ export default function Task(props: any) {
       editDelete.style.display = "none";
     }
   }
+  
   return (
     <section className='task' style={{display: "none"}}>
       <div className="filter3" onClick={handleClickTask}></div>

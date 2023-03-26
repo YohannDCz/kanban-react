@@ -23,15 +23,17 @@ export function NewTask(props: any) {
     setIndexes(initialValue || "");
   })
 
-  const [editAdd, setEditAdd] = useState(document.querySelector(".taskForm")?.querySelector("h2")?.innerText === "Add Task");
+  const [editAdd, setEditAdd] = useState(document.getElementById("#editAddTask")?.innerText === "Add Task");
   const [task, setTask] = useState(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
-  const [columns, setColumns] = useState(data?.boards[indexes.boardIndex]?.columns)
+  const [columns, setColumns] = useState(data?.boards[indexes.boardIndex]?.columns);
+  const [board, setBoard] = useState(document.querySelector(".board.board1.active")?.id);
   
   useEffect(() => {
-    setTask(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex])
-    setColumns(data?.boards[indexes.boardIndex]?.columns)
+    setTask(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
+    setColumns(data?.boards[indexes.boardIndex]?.columns);
+    setBoard(document.querySelector(".board.board1.active")?.id);
   })
-  
+
   useEffect(() => {
     const newTask: any = document.querySelector(".newTask");
     const filter: any = document.querySelector(".filter2");
@@ -50,8 +52,8 @@ export function NewTask(props: any) {
     }
   })
 
-  function displayShow() {
-    const options: any = document.querySelector(".options");
+  const displayShow = (e: any) => {
+    const options: any = e.target.nextElementSibling;
     if (options?.style.display === "none") {
       options.style.display = "block";
     } else if (options?.style.display === "block") {
@@ -65,20 +67,17 @@ export function NewTask(props: any) {
       <div className="editTaskPanel">
         <div className="box">
           <form id="taskForm" className="taskForm">
-            {editAdd && <h2>Add Task</h2>}
-            {!editAdd && <h2>Edit Task</h2>}
+            <h2 id="addEditTask">Add Task</h2>
             <div className="title">
               <label htmlFor="title">Title</label>
-              {editAdd && <input id="title" type="text" placeholder="e.g. Take coffee break" />}
-              {!editAdd && <input id="title" type="text" defaultValue={task?.title} placeholder="e.g. Take coffee break" />}
+              <input id="title" type="text" defaultValue={task?.title} placeholder="e.g. Take coffee break" />
             </div>
             <div className="Description">
               <label htmlFor="description">Description</label>
-              {editAdd && <textarea id="description" placeholder="e.g. It’s always good to take a break. This 15 minute break will  recharge the batteries a little." />}
-              {!editAdd && <textarea id="description" defaultValue={task?.description} placeholder="e.g. It’s always good to take a break. This 15 minute break will  recharge the batteries a little." />}
+              <textarea id="description" placeholder="e.g. It’s always good to take a break. This 15 minute break will  recharge the batteries a little." />
             </div>
             <div className="subtasks">
-              <label htmlFor="button subtask1 subtask2 subtask3 subtask4 subtask5">Subtasks</label>
+              <label>Subtasks</label>
               {task?.subtasks.map((subtask: any, index: number) => {
                 return (<div key={index} className={"subtask subtask " + subtask.title.replace(/\s/g, '')}>
                     <input id="subtask1" type="text" defaultValue={subtask.title} placeholder="e.g. Make coffee"/>
@@ -91,12 +90,12 @@ export function NewTask(props: any) {
             <div className="status">
               <h3 className="title">Current Status</h3>
               <div className="selected" onClick={displayShow}>
-                <h3>{task?.status}</h3>
+                <h3>{data?.boards[board]?.columns[0].name}</h3>
                 <img src="/icon-chevron-down.svg" alt="The down chevron" />
               </div>
               <div className="options" style={{display: "none"}}>
-                {columns?.map((column: any, index: any) =>
-                  <h3 className={'state state' + index} onClick={displayShow}>{column.name}</h3>
+                {data?.boards[board]?.columns.map((column: any, index: any) =>
+                  <h3 key={index} className={'state state' + index} onClick={displayShow}>{column.name}</h3>
                 )}
               </div>
             </div>

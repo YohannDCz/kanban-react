@@ -159,7 +159,7 @@ function Header(props: any) {
         <div className="box2">
           <img src="/logo-dark.svg" alt="" className="logotype" />
         </div>
-        <Panel handleClickAddBoard={handleClickAddBoard} handleClickTask={handleClickTask} handleClickHeader={handleClickHeader} />
+        <Panel handleClickAddBoard={handleClickAddBoard} handleClickHeader={handleClickHeader} />
         <div className="show" onClick={handleClickHeader}>
           <img src="/icon-show-sidebar.svg" alt="" className="eye-open" />
         </div>
