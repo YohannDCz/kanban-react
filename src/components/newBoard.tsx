@@ -23,8 +23,6 @@ export function NewBoard(props: any) {
 
   const [editAdd, setEditAdd] = useState(document.getElementById("editAddBoard")?.innerText === "Add Board");
   const [board, setBoard] = useState(0);
-  
-  console.log(editAdd);
 
   useEffect(() => {
     setBoard(Number(document.querySelector(".board.board1.active")?.id))

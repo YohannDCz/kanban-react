@@ -7,7 +7,6 @@ export default function EditDeleteBoard() {
     const editDelete: any = document.querySelector("#editDeleteBoard");
     const editBoard = document.querySelector("#editAddBoard");
 
-    console.log(editBoard);
 
     if (editDelete?.style.display === "flex") {
       newBoard.style.display = "flex";
