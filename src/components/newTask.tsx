@@ -27,8 +27,6 @@ export function NewTask(props: any) {
   const [task, setTask] = useState(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
   const [columns, setColumns] = useState(data?.boards[indexes.boardIndex]?.columns);
   const [board, setBoard] = useState(0);
-  
-  console.log(board)
 
   useEffect(() => {
     setTask(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);

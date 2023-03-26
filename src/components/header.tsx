@@ -77,6 +77,9 @@ export const handleClickAddBoard = (e: any) => {
   } else if (e.target.className === "editBoards") {
     boardForm.innerText = "Edit Board";
   }
+
+  const editBoard: any = document.querySelector("#editAddBoard");
+  editBoard.innerText = "Add Board";
 }
 
 function Header(props: any) {

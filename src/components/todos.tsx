@@ -12,10 +12,15 @@ export function Todos(props: any) {
     return initialValue || "";
   });
 
-  // const [i, setI] = useState(-1);
   const [color, setColor] = useState(["#49C4E5", "#8471F2", "#67E2AE", "#FFDD4A", "#D65108", "#FF5964", "#ED1D7A", "#621708"])
-  // const main = document.querySelector("main");
-  // const boardName = document.querySelector(".board-name")?.querySelector("h1")?.innerText;
+
+  const newColumn = () => {
+    const newBoard = document.querySelector(".newBoard");
+    const columns = document.querySelector(".")
+    // newBoard.style.display = flex;
+
+  } 
+  
   return (
     <main>
       {data.boards.map((board: any, index1: any) => 

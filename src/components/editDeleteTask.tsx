@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 export default function EditDeleteTask() {
 
-  const showEditTask = (e: any) => {
+  const showEditTask = () => {
     const task: any = document.querySelector(".task");
     const newTask: any = document.querySelector(".newTask");
     const editDelete: any = document.querySelector("#editDeleteTask");
@@ -14,6 +14,7 @@ export default function EditDeleteTask() {
       editDelete.style.display = "none";
     }
   }
+  
   return (
     <div className="editDelete" id="editDeleteTask" style={{display: "none"}}>
       <div className="edit" onClick={showEditTask}>Edit Task</div>
