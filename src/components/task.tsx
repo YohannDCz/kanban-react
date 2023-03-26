@@ -83,7 +83,7 @@ export default function Task(props: any) {
           <div className="subtasks">
             <h3 className="title">Subtasks ({task?.subtasks.filter((subtask: any) => subtask.isCompleted === "true").length} of {task?.subtasks.length})</h3>
             {task?.subtasks.map((subtask: any, index: any) => 
-              <div className="subtask1">
+              <div key={index} id={index} className="subtask1">
                 <input type="checkbox" className="checkbox" id={"checkbox" + index} />
                 <label htmlFor={"checkbox" + index}>{subtask?.title}</label>
               </div>

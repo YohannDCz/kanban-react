@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 export default function EditDeleteTask() {
 
-  const showEditTask = (e) => {
+  const showEditTask = (e: any) => {
     const task: any = document.querySelector(".task");
     const newTask: any = document.querySelector(".newTask");
     const editDelete: any = document.querySelector("#editDeleteTask");

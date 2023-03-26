@@ -26,8 +26,10 @@ export function NewTask(props: any) {
   const [editAdd, setEditAdd] = useState(document.getElementById("#editAddTask")?.innerText === "Add Task");
   const [task, setTask] = useState(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
   const [columns, setColumns] = useState(data?.boards[indexes.boardIndex]?.columns);
-  const [board, setBoard] = useState(document.querySelector(".board.board1.active")?.id);
+  const [board, setBoard] = useState("");
   
+  console.log(board)
+
   useEffect(() => {
     setTask(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
     setColumns(data?.boards[indexes.boardIndex]?.columns);
