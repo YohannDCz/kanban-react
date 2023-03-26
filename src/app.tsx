@@ -32,12 +32,12 @@ function App() {
   
   return (
     <>
-      <NewTask/>
       <Header />
       <Background />
       <Todos />
       <NewBoard />
       <Task />
+      <NewTask/>
     </>
   )
 }

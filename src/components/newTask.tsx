@@ -26,14 +26,14 @@ export function NewTask(props: any) {
   const [editAdd, setEditAdd] = useState(document.getElementById("#editAddTask")?.innerText === "Add Task");
   const [task, setTask] = useState(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
   const [columns, setColumns] = useState(data?.boards[indexes.boardIndex]?.columns);
-  const [board, setBoard] = useState("");
+  const [board, setBoard] = useState(0);
   
   console.log(board)
 
   useEffect(() => {
     setTask(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
     setColumns(data?.boards[indexes.boardIndex]?.columns);
-    setBoard(document.querySelector(".board.board1.active")?.id);
+    setBoard(Number(document.querySelector(".board.board1.active")?.id));
   })
 
   useEffect(() => {
@@ -92,13 +92,13 @@ export function NewTask(props: any) {
             <div className="status">
               <h3 className="title">Current Status</h3>
               <div className="selected" onClick={displayShow}>
-                <h3>{data?.boards[board]?.columns[0].name}</h3>
+                <h3>{data?.boards[board]?.columns[0]?.name}</h3>
                 <img src="/icon-chevron-down.svg" alt="The down chevron" />
               </div>
               <div className="options" style={{display: "none"}}>
-                {data?.boards[board]?.columns.map((column: any, index: any) =>
-                  <h3 key={index} className={'state state' + index} onClick={displayShow}>{column.name}</h3>
-                )}
+                {data.boards[board]?.columns?.map((column: any, index: any) => {
+                  return <h3 key={index} className={'state state' + index} onClick={displayShow}>{column?.name}</h3>
+                })}
               </div>
             </div>
           </form>
