@@ -16,7 +16,15 @@ export default function EditDeleteBoard() {
   }
 
   const showDeleteBoard = () => {
+    const deleteBoard: any = document.querySelector("#deleteBoard");
+    const editDelete: any = document.querySelector("#editDeleteBoard");
+
+    if (editDelete?.style.display === "flex") {
+      editDelete.style.display = "none";
+      deleteBoard.style.display = "flex";
+    }
   }
+
   return (
     <div className="editDelete" id="editDeleteBoard" style={{display: "none"}}>
       <div className="edit" onClick={showEditBoard}>Edit Board</div>

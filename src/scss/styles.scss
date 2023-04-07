@@ -8,6 +8,7 @@
 @use "newtask.scss";
 @use "task.scss";
 @use "editDelete.scss";
+@use "deleteBoard.scss";
 
 * {
   font-family: var(--ff);
@@ -15,7 +16,6 @@
   font-weight: 700;
   color: var(--clr-d-1);
   user-select: none;
-  white-space: nowrap;
   box-sizing: border-box;
 }
 

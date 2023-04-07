@@ -25,9 +25,11 @@ export function NewBoard(props: any) {
   const [board, setBoard] = useState(0);
 
   useEffect(() => {
-    setBoard(Number(document.querySelector(".board.board1.active")?.id))
-    setEditAdd(document.getElementById("editAddBoard")?.innerText === "Add Board")
-  })
+    const setboard = () => setBoard(Number(document.querySelector(".active")?.id));
+    const seteditadd = () => setEditAdd(document.getElementById("editAddBoard")?.innerText === "Add Board");
+    setboard();
+    seteditadd();
+  }, [Number(document.querySelector(".active")?.id), document.getElementById("editAddBoard")?.innerText === "Add Board"]);
   
   return (
     <section className="newBoard" style={{display: "none"}}>

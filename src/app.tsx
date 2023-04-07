@@ -5,6 +5,8 @@ import { Todos } from './components/todos';
 import { NewBoard } from './components/newBoard';
 import { NewTask } from './components/newTask';
 import Task from './components/task';
+import DeleteBoard from './components/deleteBoard';
+import DeleteTask from './components/deleteTask';
 // require('isomorphic-fetch');
 
 
@@ -38,6 +40,8 @@ function App() {
       <Task />
       <NewBoard />
       <NewTask/>
+      <DeleteBoard />
+      <DeleteTask />
     </>
   )
 }
