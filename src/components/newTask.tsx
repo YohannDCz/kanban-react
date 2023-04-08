@@ -23,12 +23,13 @@ export function NewTask(props: any) {
     setIndexes(initialValue || "");
   })
 
-  const [editAdd, setEditAdd] = useState(document.getElementById("#editAddTask")?.innerText === "Add Task");
+  const [editAdd, setEditAdd] = useState(document.getElementById("addEditTask")?.textContent === "Add New Task");
   const [task, setTask] = useState(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
   const [columns, setColumns] = useState(data?.boards[indexes.boardIndex]?.columns);
   const [board, setBoard] = useState(0);
 
   useEffect(() => {
+    setEditAdd(document.getElementById("addEditTask")?.textContent === "Add New Task");
     setTask(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
     setColumns(data?.boards[indexes.boardIndex]?.columns);
     setBoard(() => {
@@ -69,10 +70,10 @@ export function NewTask(props: any) {
       <div className="editTaskPanel">
         <div className="box">
           <form id="taskForm" className="taskForm">
-            <h2 id="addEditTask">Add Task</h2>
+            <h2 id="addEditTask">Edit Task</h2>
             <div className="title">
               <label htmlFor="title">Title</label>
-              <input id="title" type="text" defaultValue={task?.title} placeholder="e.g. Take coffee break" />
+              <input id="title" type="text" defaultValue={editAdd? null: task?.title} placeholder="e.g. Take coffee break" />
             </div>
             <div className="Description">
               <label htmlFor="description">Description</label>

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/header'
 import Background from './components/background';
 import { Todos } from './components/todos';
-import { NewBoard } from './components/newBoard';
+import { AddBoard } from './components/addBoard';
+import { EditBoard } from './components/editBoard';
 import { NewTask } from './components/newTask';
 import Task from './components/task';
 import DeleteBoard from './components/deleteBoard';
@@ -12,12 +13,21 @@ import DeleteTask from './components/deleteTask';
 
 function App() {
   
-  fetch('/data.json')
-      .then((response: any) => response.json())
-      .then((data) => {
-        localStorage.setItem("data", JSON.stringify(data));
-      });
-
+  // fetch('/data.json')
+  //     .then((response: any) => response.json())
+  //     .then((data) => {
+  //       localStorage.setItem("data", JSON.stringify(data));
+  //     });
+  
+  async function fetchData() {
+    try {
+      const response = await fetch('/data.json'); // fetch the JSON file
+      const data = await response.json(); // parse the response as JSON
+      localStorage.setItem('data', JSON.stringify(data)); // store the parsed JSON in local storage
+    } catch (error) {
+      console.error(error); // handle any errors that occur during the fetch or parsing
+    }
+  }
   // useEffect(() => {
   //   async function promiseFunction () {
   //     try {
@@ -38,7 +48,8 @@ function App() {
       <Background />
       <Todos />
       <Task />
-      <NewBoard />
+      <EditBoard />
+      <AddBoard />
       <NewTask/>
       <DeleteBoard />
       <DeleteTask />

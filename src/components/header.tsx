@@ -22,6 +22,17 @@ export const handleClickTask = (e: any) => {
   const header: any = document.querySelector("header");
   const newTask: any = document.querySelector(".newTask")
 
+  const task = e.currentTarget
+  const column = task.parentElement.parentElement;
+  const board = column.parentElement;
+  const indexes = {
+    taskIndex: task.id,
+    columnIndex: column.id,
+    boardIndex: board.id
+  }
+
+  localStorage.setItem('indexes', JSON.stringify(indexes));
+
   if (taskPanel.style.display === "none") {
     if (newTask.style.display === "none") {
       taskPanel.style.display = "flex";
@@ -36,50 +47,51 @@ export const handleClickTask = (e: any) => {
     header.style.position = "sticky";
   }
 
-  const task = e.currentTarget
-  const column = task.parentElement.parentElement;
-  const board = column.parentElement;
-  const indexes = {
-    taskIndex: task.id,
-    columnIndex: column.id,
-    boardIndex: board.id
-  }
-
-  localStorage.setItem('indexes', JSON.stringify(indexes));
 
 }
 
-
-export const handleClickAddBoard = (e: any) => {
-  const newBoard: any = document.querySelector(".newBoard");
+export const handleClickEditBoard = (e: any) => {
+  const editBoard: any = document.querySelector(".editBoard");
   const header: any = document.querySelector("header");
   const panel: any = document.querySelector("nav");
   const downchevron: any = document.querySelector('.downchevron');
   const width: number = window.innerWidth;
 
 
-  if (newBoard.style.display === "none") {
-    newBoard.style.display = "flex"
+  if (editBoard.style.display === "none") {
+    editBoard.style.display = "flex"
     if (width < 620) {
       header.style.position = "relative";
       panel.style.display = "none";
       downchevron.style.transform = "rotate(0deg)";
       document.body.style.overflow = "auto";
     }
-  } else if (newBoard.style.display === "flex") {
-    newBoard.style.display = "none";
+  } else if (editBoard.style.display === "flex") {
+    editBoard.style.display = "none";
     header.style.position = "sticky";
   }
+}
 
-  const boardForm: any = document.querySelector("#boardForm")?.querySelector("h2");
-  if (e.target.parentElement.parentElement.className === "addBoards") {
-    boardForm.innerText = "Add Board";
-  } else if (e.target.className === "editBoards") {
-    boardForm.innerText = "Edit Board";
+export const handleClickAddBoard = (e: any) => {
+  const addBoard: any = document.querySelector(".addBoard");
+  const header: any = document.querySelector("header");
+  const panel: any = document.querySelector("nav");
+  const downchevron: any = document.querySelector('.downchevron');
+  const width: number = window.innerWidth;
+
+
+  if (addBoard.style.display === "none") {
+    addBoard.style.display = "flex"
+    if (width < 620) {
+      header.style.position = "relative";
+      panel.style.display = "none";
+      downchevron.style.transform = "rotate(0deg)";
+      document.body.style.overflow = "auto";
+    }
+  } else if (addBoard.style.display === "flex") {
+    addBoard.style.display = "none";
+    header.style.position = "sticky";
   }
-
-  const editBoard: any = document.querySelector("#editAddBoard");
-  editBoard.innerText = "Add Board";
 }
 
 function Header(props: any) {

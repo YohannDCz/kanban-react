@@ -7,11 +7,13 @@ export default function EditDeleteTask() {
     const task: any = document.querySelector(".task");
     const newTask: any = document.querySelector(".newTask");
     const editDelete: any = document.querySelector("#editDeleteTask");
+    const editTask: any = document.querySelector("#addEditTask");
 
     if (task?.style.display === "flex") {
       task.style.display = "none";
       newTask.style.display = "flex";
       editDelete.style.display = "none";
+      editTask.innerText = "Edit Task"
     }
   }
   

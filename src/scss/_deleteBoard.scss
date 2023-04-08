@@ -45,7 +45,7 @@
         margin-bottom: 24px;
       }
 
-      .description {
+      .description, #taskTitle {
         font-size: 13px;
         font-weight: 500;
         line-height: 23px;
@@ -84,13 +84,13 @@
 }
 
 @media only screen and (min-width: 620px) {
-  .deleteBoard  {
+  .deleteBoard, .deleteTask  {
     .container {
       display: flex;
       justify-content: center;
       background-color: var(--clr-l-1);
       width: 480px;
-      height: 220px;
+      height: unset;
       border-radius: 6px;
 
       .box {

@@ -15,9 +15,9 @@ export default function DeleteTask() {
   })
 
   useEffect(() => {
-    const saved: any = localStorage.getItem("indexes");
-    const initialValue: any = JSON.parse(saved);
-    setIndexes(initialValue || "");
+      const saved: any = localStorage.getItem("indexes");
+      const initialValue: any = JSON.parse(saved);
+      setIndexes(initialValue || "")
   })
 
   const [task, setTask] = useState(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
@@ -27,12 +27,26 @@ export default function DeleteTask() {
     settask()
   }, [data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]]);
   
+  
   const showDeleteTask = () => {
     const deleteTask: any = document.querySelector("#deleteTask");
     if (deleteTask.style.display === "flex") {
       deleteTask.style.display = "none";
     }
   }
+
+  const truncateText = (selector: string, maxLength: number) => {
+    let element = document.querySelector(selector);
+    if (element?.textContent) {
+        let truncated = element.textContent.trim().split(" ").slice(0, maxLength).join(" ");
+        if (element.textContent.trim().split(" ").length > maxLength) {
+            truncated += "...";
+        }
+        element.textContent = truncated;
+    }
+  };
+
+  truncateText("#taskTitle", 4);
 
   return (
     <div className="deleteTask" id="deleteTask" style={{display: "none"}}>
@@ -41,7 +55,7 @@ export default function DeleteTask() {
         <div className="box">
           <h2>Delete this task?</h2>
           <div className="description">
-            Are you sure you want to delete the '{task.name}' task and its subtasks? This action cannot be reversed.
+            Are you sure you want to delete the '<span id="taskTitle">{task?.title}</span>' task and its subtasks? This action cannot be reversed.
           </div>
           <div className="buttons">
             <button className="deleteBoardButton">Delete</button>

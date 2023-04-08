@@ -3,15 +3,14 @@ import ReactDOM from 'react-dom';
 
 export default function EditDeleteBoard() {
   const showEditBoard = () => {
-    const newBoard: any = document.querySelector(".newBoard");
+    const editBoard1: any = document.querySelector(".editBoard");
     const editDelete: any = document.querySelector("#editDeleteBoard");
     const editBoard: any = document.querySelector("#editAddBoard");
 
 
     if (editDelete?.style.display === "flex") {
-      newBoard.style.display = "flex";
+      editBoard1.style.display = "flex";
       editDelete.style.display = "none";
-      editBoard.innerText = "Edit Board";
     }
   }
 

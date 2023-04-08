@@ -15,11 +15,14 @@ export default function DeleteBoard() {
   })
 
   useEffect(() => {
-    const saved: any = localStorage.getItem("indexes");
-    const initialValue: any = JSON.parse(saved);
-    setIndexes(initialValue || "");
-  })
-  
+    const setindexes = () => {
+      const saved: any = localStorage.getItem("indexes");
+      const initialValue: any = JSON.parse(saved);
+      setIndexes(initialValue || "")
+    }
+    setindexes()
+  }, [localStorage.getItem("indexes")])
+
   const [board, setBoard] = useState(0);
 
   useEffect(() => {
