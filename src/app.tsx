@@ -18,7 +18,7 @@ function App() {
   //     .then((data) => {
   //       localStorage.setItem("data", JSON.stringify(data));
   //     });
-  
+
   async function fetchData() {
     try {
       const response = await fetch('/data.json'); // fetch the JSON file
@@ -28,6 +28,8 @@ function App() {
       console.error(error); // handle any errors that occur during the fetch or parsing
     }
   }
+
+  fetchData()
   // useEffect(() => {
   //   async function promiseFunction () {
   //     try {
