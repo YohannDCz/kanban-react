@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import Background from './background';
 import { handleClickTask } from './header';
-import { NewTask } from './newTask';
+import { NewTask } from './addTask';
 import { TodoCard } from './todocard';
 
 export function Todos(props: any) {

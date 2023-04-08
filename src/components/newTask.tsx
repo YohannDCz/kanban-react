@@ -64,6 +64,7 @@ export function NewTask(props: any) {
     }
   }
 
+  console.log(editAdd);
   return (
     <section className="newTask" style={{display: "none"}}>
       <div className="filter2" onClick={handleClickTask}></div>
@@ -81,7 +82,7 @@ export function NewTask(props: any) {
             </div>
             <div className="subtasks">
               <label>Subtasks</label>
-              {task?.subtasks.map((subtask: any, index: number) => {
+              {!editAdd && task?.subtasks.map((subtask: any, index: number) => {
                 return (<div key={index} className={"subtask subtask " + subtask.title.replace(/\s/g, '')}>
                     <input id="subtask1" type="text" defaultValue={subtask.title} placeholder="e.g. Make coffee"/>
                     <img src="/icon-cross.svg" alt="" className="cross" />
