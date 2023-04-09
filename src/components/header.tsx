@@ -20,7 +20,7 @@ export const handleClickTask = (e: any) => {
   const taskPanel: any = document.querySelector(".task");
   const header: any = document.querySelector("header");
   const addTask: any = document.querySelector(".addTask");
-  const editTask: ay = document.querySelector(".editTask");
+  const editTask: any = document.querySelector(".editTask");
 
   const task = e.currentTarget
   const column = task.parentElement.parentElement;
