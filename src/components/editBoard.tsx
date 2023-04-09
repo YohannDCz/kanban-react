@@ -26,15 +26,13 @@ export function EditBoard(props: any) {
   useEffect(() => {
     setBoard(Number(document.querySelector(".active")?.id));
   });
-
-  console.log(board);
   
   return (
     <section className="editBoard" style={{display: "none"}}>
       <div className="filter2" onClick={handleClickEditBoard}></div>
       <div className="board">
         <div className="box">
-          <form id="boardForm">
+          <form id="editTaskForm">
             <h2>Edit Board</h2>
             <div className="title">
               <label htmlFor="title">Board Name</label>
@@ -53,7 +51,7 @@ export function EditBoard(props: any) {
               <button id="button">+ Add New Column</button>
             </div>
           </form>
-          <button type="submit" form="addTaskForm" value="SubmitNewBoard">Create New Board / Save Changes</button>
+          <button type="submit" form="editTaskForm" value="SubmitNewBoard">Create New Board / Save Changes</button>
         </div>
       </div>
     </section>

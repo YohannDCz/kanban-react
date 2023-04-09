@@ -1,4 +1,4 @@
-.newTask, .addBoard, .editBoard {
+.addTask, .editTask, .addBoard, .editBoard {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -58,6 +58,10 @@
             color:rgba(0, 0, 0, 0.25);
             font-weight: 500;
           }
+
+          &:focus {
+            outline: 1px solid var(--clr-pp-1);
+          }
         }
 
         textarea {
@@ -71,9 +75,20 @@
         }
         
         .subtask, .column {
+          position: relative;
           display: flex;
           flex-direction: row;
           align-items: center;
+
+          p {
+            color: var(--clr-p-1);
+            font-size: 13px;
+            line-height: 23px;
+            font-weight: 500;
+            position: absolute;
+            right: 48px;
+            margin-top: 8px;
+          }
 
           .cross {
             width: 14.85px;
@@ -88,7 +103,7 @@
           }
         }
 
-        #button {
+        button {
           width: 100%;
           height: 40px;
           background-color: var(--clr-pp-3);
@@ -97,6 +112,7 @@
           margin-top: 12px;
           color: var(--clr-pp-1);
           font-size: 13px;
+          cursor: pointer;
         }
 
         #status1 {
@@ -119,7 +135,7 @@
         }
       }
 
-      button {
+      #button {
         width: 100%;
         height: 40px;
         background-color: var(--clr-pp-1);
@@ -128,6 +144,7 @@
         border: none;
         border-radius: 9999px;
         margin-top: 24px;
+        cursor: pointer;
       }
     }
   }

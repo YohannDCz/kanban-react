@@ -4,15 +4,14 @@ import Panel from "./panel"
 import EditDeleteBoard from "./editDeleteBoard";
 
 export const handleClickAddTask = (e: any) => {
-  const newTask: any = document.querySelector(".newTask");
-  const h2 = newTask.querySelector("h2");
+  const addTask: any = document.querySelector(".addTask");
+  const h2 = addTask.querySelector("h2");
 
-  h2.innerText = "Add New Task"
 
-  if (newTask.style.display === "none") {
-    newTask.style.display = "flex";
-  } else if (newTask.style.display === "flex") {
-    newTask.style.display = "none";
+  if (addTask.style.display === "none") {
+    addTask.style.display = "flex";
+  } else if (addTask.style.display === "flex") {
+    addTask.style.display = "none";
   }
 }
 
@@ -20,7 +19,8 @@ export const handleClickTask = (e: any) => {
 
   const taskPanel: any = document.querySelector(".task");
   const header: any = document.querySelector("header");
-  const newTask: any = document.querySelector(".newTask")
+  const addTask: any = document.querySelector(".addTask");
+  const editTask: ay = document.querySelector(".editTask");
 
   const task = e.currentTarget
   const column = task.parentElement.parentElement;
@@ -34,14 +34,15 @@ export const handleClickTask = (e: any) => {
   localStorage.setItem('indexes', JSON.stringify(indexes));
 
   if (taskPanel.style.display === "none") {
-    if (newTask.style.display === "none") {
+    if (addTask.style.display === "none" && editTask.style.display === "none") {
       taskPanel.style.display = "flex";
-    } else if (newTask.style.display === "flex") {
-      newTask.style.display = "none";
+    } else if (addTask.style.display === "flex" || editTask.style.display === "flex") {
+      addTask.style.display = "none";
+      editTask.style.display = "none";
     }
     header.style.position = "relative";
   } else if (taskPanel.style.display === "flex") {
-    if (newTask.style.display === "none") {
+    if (addTask.style.display === "none" && editTask.style.display === "none") {
       taskPanel.style.display = 'none';
     }
     header.style.position = "sticky";

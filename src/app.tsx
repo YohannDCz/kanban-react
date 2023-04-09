@@ -4,7 +4,8 @@ import Background from './components/background';
 import { Todos } from './components/todos';
 import { AddBoard } from './components/addBoard';
 import { EditBoard } from './components/editBoard';
-import { NewTask } from './components/newTask';
+import { AddTask } from './components/addTask';
+import { EditTask } from './components/editTask';
 import Task from './components/task';
 import DeleteBoard from './components/deleteBoard';
 import DeleteTask from './components/deleteTask';
@@ -52,7 +53,8 @@ function App() {
       <Task />
       <EditBoard />
       <AddBoard />
-      <NewTask/>
+      <AddTask />
+      <EditTask/>
       <DeleteBoard />
       <DeleteTask />
     </>

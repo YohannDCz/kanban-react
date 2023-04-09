@@ -49,8 +49,8 @@ export function AddBoard(props: any) {
               </div>
               <button id="button">+ Add New Column</button>
             </div>
+            <button type="submit" form="boardForm" value="SubmitNewBoard">Create New Board</button>
           </form>
-          <button type="submit" form="addTaskForm" value="SubmitNewBoard">Create New Board</button>
         </div>
       </div>
     </section>
