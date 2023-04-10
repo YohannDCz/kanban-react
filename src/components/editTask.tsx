@@ -24,6 +24,7 @@ export function EditTask(props: any) {
   })
 
   const [task, setTask] = useState(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
+  const [subtasks, setSubtasks] = useState(task?.subtasks?.map((subtask: any) => ({title: subtask.title, isCompleted: false})));
   const [columns, setColumns] = useState(data?.boards[indexes.boardIndex]?.columns);
   const [board, setBoard] = useState(0);
 
@@ -64,27 +65,26 @@ export function EditTask(props: any) {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [subtasks1, setSubtasks1] = useState<string[]>([]);
+
 
   function handleSubmit(event: any) {
     event.preventDefault();
 
   }
 
-  const [subtasks, setSubtasks] = useState<string[]>([]);
-
   const handleAddSubtask = () => {
-    const nextIndex = subtasks.length;
-    setSubtasks([...subtasks, `subtask ${nextIndex + 1}`]);
+    const nextIndex = subtasks1.length;
+    setSubtasks1([...subtasks1, `subtask ${nextIndex + 1}`]);
   }
 
   function handleSubtaskChange(e: any, index: any) {
-    const newSubtasks = [...subtasks];
-    newSubtasks[index] = e.target.value;
-    setSubtasks(newSubtasks);
+    const newTask = { title: e.target.value, isCompleted: false };
+    setSubtasks((prevSubtasks: any) => [...prevSubtasks, newTask]);
     e.target.style.border = "1px solid var(--clr-d-6)";
     e.target.parentNode.querySelector("img").src = "/icon-cross.svg";
     e.target.parentNode.querySelector("p").style.display = "none";
-    console.log(e.target.value);
+    console.log(subtasks)
   }
 
   const deleteSubtask = (e: any) => {
@@ -116,12 +116,20 @@ export function EditTask(props: any) {
             <div className="subtasks">
               <label>Subtasks</label>
               {task?.subtasks?.map((subtask: any, index: number) => {
-                return (<div key={index} className={"subtask subtask " + subtask?.title.replace(/\s/g, '')}>
-                    <input id="subtask1" type="text" defaultValue={subtask?.title} placeholder="e.g. Make coffee" onChange={(event) => handleSubtaskChange(event, index)}/>
+                return (<div key={index} className={`subtask subtask-${index}`}>
+                    <input type="text" defaultValue={subtask?.title} placeholder="e.g. Make coffee" onChange={(event) => handleSubtaskChange(event, index)}/>
                     <img src="/icon-cross.svg" alt="" className="cross" onClick={deleteSubtask}/>
+                    <p style={{display: "none"}}>Can't be empty</p>
                   </div>
                 )
               })}
+              {subtasks1.map((subtask, index) => (
+                <div key={index} className={`subtask subtask-${index}`}>
+                  <input placeholder="e.g. Make coffee" onChange={(event) => handleSubtaskChange(event, index)}/>
+                  <img src="/icon-cross.svg" alt="" className="cross" onClick={deleteSubtask} />
+                  <p style={{display: "none"}}>Can't be empty</p>
+                </div>
+              ))}
               <button type="button" onClick={handleAddSubtask}>Add Subtask</button>
             </div>
             <div className="status">

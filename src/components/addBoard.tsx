@@ -30,6 +30,42 @@ export function AddBoard(props: any) {
     setBoard(Number(document.querySelector(".active")?.id));
   });
   
+  const [name, setName] = useState('');
+  const [columns, setColumns] = useState('');
+
+  function handleSubmit(event: any) {
+    event.preventDefault();
+  }
+
+  const [boards, setBoards] = useState<string[]>([]);
+
+  const handleAddBoard = (event: any) => {
+    event.preventDefault();
+    const nextIndex = boards.length;
+    setBoards([...boards, `board ${nextIndex + 1}`]);
+  }
+
+  function handleBoardChange(e: any, index: any) {
+    const newBoards = [...boards];
+    newBoards[index] = e.target.value;
+    setBoards(newBoards);
+    e.target.style.border = "1px solid var(--clr-d-6)";
+    e.target.parentNode.querySelector("img").src = "/icon-cross.svg";
+    e.target.parentNode.querySelector("p").style.display = "none";
+    console.log(e.target.value);
+  }
+
+  const deleteBoard = (e: any) => {
+    if (e.target.previousElementSibling.value === "") {
+      e.target.src = "/icon-cross-red.png";
+      e.target.previousElementSibling.style.border = "1px solid var(--clr-p-1)"
+      e.target.previousElementSibling.style.outline = "none";
+      e.target.nextElementSibling.style.display = "flex";
+    } else {
+      e.target.parentElement.remove();
+    }
+  }
+
   return (
     <section className="addBoard" style={{display: "none"}}>
       <div className="filter2" onClick={handleClickAddBoard}></div>
@@ -43,13 +79,16 @@ export function AddBoard(props: any) {
             </div>
             <div className="columns">
               <label htmlFor="button column1 column2 column3 column4 column5">Board Columns</label>
-              <div className="column">
-                <input type="text" placeholder="e.g. Todo"/>
-                <img src="/icon-cross.svg" alt="The cross icon." className="cross" />
-              </div>
-              <button id="button">+ Add New Column</button>
+              {boards.map((board, index) => (
+                <div key={index} className={`column column${index}"`}>
+                  <input type="text" placeholder="e.g. Todo" onChange={(event) => handleBoardChange(event, index)}/>
+                  <img src="/icon-cross.svg" alt="The cross icon." className="cross"  onClick={deleteBoard}/>
+                  <p style={{display: "none"}}>Can't be empty</p>
+                </div>
+              ))}
+              <button id="button" onClick={(event) => handleAddBoard(event)}>+ Add New Column</button>
             </div>
-            <button type="submit" form="boardForm" value="SubmitNewBoard">Create New Board</button>
+            <button type="submit" form="boardForm" value="SubmitNewBoard" onSubmit={(event) => handleSubmit(event)}>Create New Board</button>
           </form>
         </div>
       </div>
