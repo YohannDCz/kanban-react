@@ -31,24 +31,23 @@ export function AddBoard(props: any) {
   });
   
   const [name, setName] = useState('');
-  const [columns, setColumns] = useState('');
 
   function handleSubmit(event: any) {
     event.preventDefault();
   }
 
-  const [boards, setBoards] = useState<string[]>([]);
+  const [columns, setColumns] = useState<string[]>(["column0"]);
 
   const handleAddBoard = (event: any) => {
     event.preventDefault();
-    const nextIndex = boards.length;
-    setBoards([...boards, `board ${nextIndex + 1}`]);
+    const nextIndex = columns.length;
+    setColumns([...columns, `board ${nextIndex + 1}`]);
   }
 
   function handleBoardChange(e: any, index: any) {
-    const newBoards = [...boards];
-    newBoards[index] = e.target.value;
-    setBoards(newBoards);
+    const newColumns = [...columns];
+    newColumns[index] = e.target.value;
+    setColumns(newColumns);
     e.target.style.border = "1px solid var(--clr-d-6)";
     e.target.parentNode.querySelector("img").src = "/icon-cross.svg";
     e.target.parentNode.querySelector("p").style.display = "none";
@@ -79,7 +78,7 @@ export function AddBoard(props: any) {
             </div>
             <div className="columns">
               <label htmlFor="button column1 column2 column3 column4 column5">Board Columns</label>
-              {boards.map((board, index) => (
+              {columns.map((board, index) => (
                 <div key={index} className={`column column${index}"`}>
                   <input type="text" placeholder="e.g. Todo" onChange={(event) => handleBoardChange(event, index)}/>
                   <img src="/icon-cross.svg" alt="The cross icon." className="cross"  onClick={deleteBoard}/>
