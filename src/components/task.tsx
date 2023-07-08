@@ -29,7 +29,12 @@ export default function Task(props: any) {
 
   useEffect(() => {
     setTask(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
-    setColumns(data?.boards[indexes.boardIndex]?.columns)
+    setColumns(data?.boards[indexes.boardIndex]?.columns);
+    setData(() => {
+    const saved: any = localStorage.getItem("data");
+    const initialValue: any = JSON.parse(saved);
+    return initialValue || "";
+  });
   })
 
   const displayShow = (e: any) => {

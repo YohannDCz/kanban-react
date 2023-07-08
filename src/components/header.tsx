@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import Panel from "./panel"
 import EditDeleteBoard from "./editDeleteBoard";
 
+
 export const handleClickAddTask = (e: any) => {
   const addTask: any = document.querySelector(".addTask");
   const h2 = addTask.querySelector("h2");

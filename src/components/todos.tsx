@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import Background from './background';
 import { handleClickTask } from './header';
-import { AddTask } from './addTask';
+import { AddTask } from '../components/addTask';
 import { TodoCard } from './todocard';
 
 export function Todos(props: any) {
@@ -14,6 +14,13 @@ export function Todos(props: any) {
 
   const [color, setColor] = useState(["#49C4E5", "#8471F2", "#67E2AE", "#FFDD4A", "#D65108", "#FF5964", "#ED1D7A", "#621708"])
 
+  useEffect(() =>
+    setData(() => {
+      const saved: any = localStorage.getItem("data");
+      const initialValue: any = JSON.parse(saved);
+      return initialValue || "";
+    })
+  )
   // const newColumn = () => {
   //   const newBoard = document.querySelector(".newBoard");
   //   const columns = document.querySelector(".")

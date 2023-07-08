@@ -17,24 +17,11 @@ export function EditTask(props: any) {
     return initialValue || "";
   })
 
-  useEffect(() => {
-    const saved: any = localStorage.getItem("indexes");
-    const initialValue: any = JSON.parse(saved);
-    setIndexes(initialValue || "");
-  })
 
   const [board, setBoard] = useState(0);
   const [column, setColumn] = useState(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex])
   const [task, setTask] = useState(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
   
-  useEffect(() => {
-    setTask(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
-    setColumn(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]);
-    setBoard(() => {
-      const activeId: any = document.querySelector(".board.board1.active")?.id
-      return parseInt(activeId)});
-    })
-    
     useEffect(() => {
       const editTask: any = document.querySelector(".editTask");
       const filter: any = document.querySelector(".filter2");
@@ -67,6 +54,7 @@ export function EditTask(props: any) {
     const [subtasks, setSubtasks] = useState(task?.subtasks?.map((subtask: any) => ({title: subtask?.title, isCompleted: subtask?.isCompleted})));
     const [status, setStatus] = useState(task?.status)
     
+
     function handleSubmit(event: any) {
       event.preventDefault();
       task.title = title;
@@ -74,10 +62,7 @@ export function EditTask(props: any) {
       task.subtasks = subtasks;
       task.status = status;
 
-      // fs.writeFile("/data.json" JSON.stringify(data), (err) => {
-      //   if (err) throw err;
-      //   console.log('Updated JSON data successfully!');
-      // });
+      localStorage.setItem("data", JSON.stringify(data));
       console.log(data)
     }
 
@@ -103,31 +88,58 @@ export function EditTask(props: any) {
   }
   
   const handleAddSubtask = () => {
-    // const nextIndex = subtasks1.length;
-    // setSubtasks1([...subtasks1, `subtask${nextIndex + 1}`]);
+    const nextIndex = subtasks?.length;
+    setSubtasks([...subtasks, `subtask ${nextIndex + 1}`]);
   }
 
   function handleSubtaskChange(e: any, index: any) {
-    const newSubtask = { title: e.target.value, isCompleted: false };
-    setSubtasks((prevSubtasks: any) => [...prevSubtasks, newSubtask]);
+    const newSubtasks = [...subtasks];
+    newSubtasks[index] = ({title: e.target.value, isCompleted: false});
+    setSubtasks(newSubtasks);
 
     e.target.style.border = "1px solid var(--clr-d-6)";
     e.target.parentNode.querySelector("img").src = "/icon-cross.svg";
     e.target.parentNode.querySelector("p").style.display = "none";
-    console.log(subtasks)
+  }
+
+  const removeSubtask = (titleToRemove: any) => {
+    const newSubtasks = subtasks.filter((subtask: any) => subtask?.title !== titleToRemove);
+    task.subtasks = newSubtasks;
+    console.log(newSubtasks)
+    setSubtasks(newSubtasks);
   }
 
   const deleteSubtask = (e: any) => {
+    e.preventDefault();
     if (e.target.previousElementSibling.value === "") {
       e.target.src = "/icon-cross-red.png";
       e.target.previousElementSibling.style.border = "1px solid var(--clr-p-1)"
       e.target.previousElementSibling.style.outline = "none";
       e.target.nextElementSibling.style.display = "flex";
     } else {
-      e.target.parentElement.remove();
+      console.log(e.target.parentElement);
+      // e.target.parentElement.remove();
+      removeSubtask(e.target.previousElementSibling.defaultValue);
     }
   }
-  
+
+  useEffect(() => {
+    const saved: any = localStorage.getItem("indexes");
+    const initialValue: any = JSON.parse(saved);
+    setIndexes(initialValue || "");
+    setTask(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
+    setColumn(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]);
+    setBoard(() => {
+      const activeId: any = document.querySelector(".board.board1.active")?.id
+      return parseInt(activeId)});
+    setTitle(task?.title);
+    setDescription(task?.description);
+    setSubtasks(task?.subtasks?.map((subtask: any) => ({title: subtask?.title, isCompleted: subtask?.isCompleted})));
+    setStatus(task?.status)
+  })
+
+  console.log(title);
+
   return (
     <section className="editTask" style={{display: "none"}}>
       <div className="filter2" onClick={handleClickTask}></div>
@@ -137,11 +149,11 @@ export function EditTask(props: any) {
             <h2 id="editTask">Edit Task</h2>
             <div className="title">
               <label htmlFor="title">Title</label>
-              <input id="title" type="text" onChange={e => setTitle(e.target.value)} defaultValue={task?.title} placeholder="e.g. Take coffee break" />
+              <input id="title" type="text" onChange={e => setTitle(e.target.value)} value={title} placeholder="e.g. Take coffee break" />
             </div>
             <div className="Description">
               <label htmlFor="description">Description</label>
-              <textarea id="description"value={description} onChange={e => setDescription(e.target.value)} placeholder="e.g. It’s always good to take a break. This 15 minute break will  recharge the batteries a little." />
+              <textarea id="description" value={description} onChange={e => setDescription(e.target.value)} placeholder="e.g. It’s always good to take a break. This 15 minute break will  recharge the batteries a little." />
             </div>
             <div className="subtasks">
               <label>Subtasks</label>
@@ -153,9 +165,9 @@ export function EditTask(props: any) {
                   </div>
                 )
               })}
-              {/* {subtasks1.map((subtask, index) => {
+              {/* {subtasks.map((subtask: any, index: any) => {
                 <div key={index} className={`subtask subtask-${index}`}>
-                  <input placeholder="e.g. Make coffee" onChange={(event) => handleSubtaskChange(event, index)}/>
+                  <input value={subtask.title} placeholder="e.g. Make coffee" onChange={(event) => handleSubtaskChange(event, index)}/>
                   <img src="/icon-cross.svg" alt="" className="cross" onClick={deleteSubtask} />
                   <p style={{display: "none"}}>Can't be empty</p>
                 </div>
