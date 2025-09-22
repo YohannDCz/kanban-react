@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react"
-import ReactDOM from "react-dom";
-import Panel from "./panel"
+import { useEffect, useState } from "react";
 import EditDeleteBoard from "./editDeleteBoard";
+import Panel from "./panel";
 
 
 export const handleClickAddTask = (e: any) => {
@@ -146,9 +145,9 @@ function Header(props: any) {
     const todos: any = document.querySelector(".todo-lists");
 
     if (width < 620) {
-      show.style.display = "none";
+      if (show) show.style.display = "none";
     } else if (width >= 620) {
-      if (menu.style.display === "flex") {
+      if (menu?.style.display === "flex" && todos) {
         todos.style.transform = "translateX(260px)";
       }
     }

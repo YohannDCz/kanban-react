@@ -1,14 +1,24 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
 function Panel(props: any) {
+  // Default data structure to prevent undefined errors
+  const defaultData = { boards: [] };
+  
   const [data, setData] = useState(() => {
     const saved: any = localStorage.getItem("data");
-    const initialValue: any = JSON.parse(saved);
-    return initialValue || "";
+    if (!saved) return defaultData;
+    try {
+      const initialValue: any = JSON.parse(saved);
+      return initialValue?.boards ? initialValue : defaultData;
+    } catch (error) {
+      console.error("🐛 [Panel] Error parsing localStorage data:", error);
+      console.log("🔧 [Panel] Using default data structure for boards");
+      return defaultData;
+    }
   });
   
-  const [num, setNum] = useState(data.boards.length);
+  const [num, setNum] = useState(data?.boards?.length || 0);
   
   useEffect(() => {
     const boards: any = document.querySelectorAll(".board1");
@@ -49,11 +59,11 @@ function Panel(props: any) {
           <div className="all-boards">
             <h1 className="title">All Boards ({num})</h1>
             <div className="boards">
-              {data.boards.map((item: any, i: any) => {
+              {data?.boards?.map((item: any, i: any) => {
                 return (
                 <div key={i} id={i} className="board board1">
                   <img src="/icon-board.svg" alt="" className="board-icon" />
-                  <h2 className="sub-title">{item.name}</h2>
+                  <h2 className="sub-title">{item?.name || 'Untitled Board'}</h2>
                 </div>)})}
             </div>
             <div className="addBoards" onClick={props.handleClickAddBoard}>

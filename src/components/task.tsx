@@ -1,51 +1,78 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import { handleClickTask } from './header';
+import { useEffect, useState } from 'react';
 import EditDeleteTask from './editDeleteTask';
+import { handleClickTask } from './header';
 
 export default function Task(props: any) {
+  // Default data structures to prevent undefined errors
+  const defaultData = { boards: [] };
+  const defaultIndexes = { boardIndex: 0, columnIndex: 0, taskIndex: 0 };
 
   const [data, setData] = useState(() => {
     const saved: any = localStorage.getItem("data");
-    const initialValue: any = JSON.parse(saved);
-    return initialValue || "";
+    if (!saved) return defaultData;
+    try {
+      const initialValue: any = JSON.parse(saved);
+      return initialValue?.boards ? initialValue : defaultData;
+    } catch (error) {
+      console.error("🐛 [Task] Error parsing localStorage data:", error);
+      console.log("🔧 [Task] Using default data structure for boards");
+      return defaultData;
+    }
   });
 
   const [indexes, setIndexes] = useState(() => {
     const saved: any = localStorage.getItem("indexes");
-    const initialValue: any = JSON.parse(saved);
-    return initialValue || "";
+    if (!saved) return defaultIndexes;
+    try {
+      const initialValue: any = JSON.parse(saved);
+      return initialValue || defaultIndexes;
+    } catch (error) {
+      console.error("Error parsing localStorage indexes:", error);
+      return defaultIndexes;
+    }
   })
 
   useEffect(() => {
     const saved: any = localStorage.getItem("indexes");
-    const initialValue: any = JSON.parse(saved);
-    setIndexes(initialValue || "");
+    if (saved) {
+      try {
+        const initialValue: any = JSON.parse(saved);
+        setIndexes(initialValue || defaultIndexes);
+      } catch (error) {
+        console.error("Error parsing localStorage indexes:", error);
+        setIndexes(defaultIndexes);
+      }
+    }
   })
 
-  const [task, setTask] = useState(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
-  const [columns, setColumns] = useState(data?.boards[indexes.boardIndex]?.columns)
-  ;
+  const [task, setTask] = useState(data?.boards?.[indexes?.boardIndex]?.columns?.[indexes?.columnIndex]?.tasks?.[indexes?.taskIndex] || null);
+  const [columns, setColumns] = useState(data?.boards?.[indexes?.boardIndex]?.columns || []);
 
   useEffect(() => {
-    setTask(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
-    setColumns(data?.boards[indexes.boardIndex]?.columns);
+    setTask(data?.boards?.[indexes?.boardIndex]?.columns?.[indexes?.columnIndex]?.tasks?.[indexes?.taskIndex] || null);
+    setColumns(data?.boards?.[indexes?.boardIndex]?.columns || []);
     setData(() => {
-    const saved: any = localStorage.getItem("data");
-    const initialValue: any = JSON.parse(saved);
-    return initialValue || "";
-  });
+      const saved: any = localStorage.getItem("data");
+      if (!saved) return defaultData;
+      try {
+        const initialValue: any = JSON.parse(saved);
+        return initialValue?.boards ? initialValue : defaultData;
+      } catch (error) {
+        console.error("Error parsing localStorage data:", error);
+        return defaultData;
+      }
+    });
   })
 
   const displayShow = (e: any) => {
     const options: any = e.target.nextElementSibling;
-      if (options?.style.display === "none") {
-        options.style.display = "block";
-      } else if (options?.style.display === "block") {
-        options.style.display = "none";
-      }
+    if (options?.style.display === "none") {
+      options.style.display = "block";
+    } else if (options?.style.display === "block") {
+      options.style.display = "none";
     }
-    
+  }
+
   useEffect(() => {
     const subtasks: any = document.querySelectorAll(".subtask1");
     subtasks?.forEach((subtask: any) => {
@@ -73,24 +100,24 @@ export default function Task(props: any) {
       editDelete.style.display = "none";
     }
   }
-  
+
   return (
-    <section className='task' style={{display: "none"}}>
+    <section className='task' style={{ display: "none" }}>
       <div className="filter3" onClick={handleClickTask}></div>
       <div className="taskPanel">
         <div className="box">
           <div className="up-info">
             <h2 className="title">{task?.title}</h2>
-            <img src="/icon-vertical-ellipsis.svg" alt="The menu." onClick={handleClickEditTask}/>
+            <img src="/icon-vertical-ellipsis.svg" alt="The menu." onClick={handleClickEditTask} />
             <EditDeleteTask />
           </div>
           <h3 className="description">{task?.description}</h3>
           <div className="subtasks">
-            <h3 className="title">Subtasks ({task?.subtasks.filter((subtask: any) => subtask.isCompleted === "true").length} of {task?.subtasks.length})</h3>
-            {task?.subtasks.map((subtask: any, index: any) => 
+            <h3 className="title">Subtasks ({task?.subtasks?.filter((subtask: any) => subtask.isCompleted === "true").length || 0} of {task?.subtasks?.length || 0})</h3>
+            {task?.subtasks?.map((subtask: any, index: any) =>
               <div key={index} id={index} className="subtask1">
                 <input type="checkbox" className="checkbox" id={"checkbox" + index} />
-                <label htmlFor={"checkbox" + index}>{subtask?.title}</label>
+                <label htmlFor={"checkbox" + index}>{subtask?.title || 'Untitled Subtask'}</label>
               </div>
             )}
           </div>
@@ -100,9 +127,9 @@ export default function Task(props: any) {
               <h3>{task?.status}</h3>
               <img src="/icon-chevron-down.svg" alt="The down chevron" />
             </div>
-            <div className="options" style={{display: "none"}}>
+            <div className="options" style={{ display: "none" }}>
               {columns?.map((column: any, index: any) =>
-                <h3 className={'state state' + index} onClick={displayShow}>{column.name}</h3>
+                <h3 key={index} className={'state state' + index} onClick={displayShow}>{column?.name || 'Untitled Column'}</h3>
               )}
             </div>
           </div>

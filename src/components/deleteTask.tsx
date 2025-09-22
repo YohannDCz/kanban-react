@@ -1,31 +1,53 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import { useEffect, useState } from 'react';
 
 export default function DeleteTask() {
+  // Default data structures to prevent undefined errors
+  const defaultData = { boards: [] };
+  const defaultIndexes = { boardIndex: 0, columnIndex: 0, taskIndex: 0 };
+  
   const [data, setData] = useState(() => {
     const saved: any = localStorage.getItem("data");
-    const initialValue: any = JSON.parse(saved);
-    return initialValue || "";
+    if (!saved) return defaultData;
+    try {
+      const initialValue: any = JSON.parse(saved);
+      return initialValue?.boards ? initialValue : defaultData;
+    } catch (error) {
+      console.error("Error parsing localStorage data:", error);
+      return defaultData;
+    }
   });
 
   const [indexes, setIndexes] = useState(() => {
     const saved: any = localStorage.getItem("indexes");
-    const initialValue: any = JSON.parse(saved);
-    return initialValue || "";
+    if (!saved) return defaultIndexes;
+    try {
+      const initialValue: any = JSON.parse(saved);
+      return initialValue || defaultIndexes;
+    } catch (error) {
+      console.error("Error parsing localStorage indexes:", error);
+      return defaultIndexes;
+    }
   })
 
   useEffect(() => {
       const saved: any = localStorage.getItem("indexes");
-      const initialValue: any = JSON.parse(saved);
-      setIndexes(initialValue || "")
+      if (saved) {
+        try {
+          const initialValue: any = JSON.parse(saved);
+          setIndexes(initialValue || defaultIndexes);
+        } catch (error) {
+          console.error("Error parsing localStorage indexes:", error);
+          setIndexes(defaultIndexes);
+        }
+      }
   })
 
-  const [task, setTask] = useState(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
+  const [task, setTask] = useState(data?.boards?.[indexes?.boardIndex]?.columns?.[indexes?.columnIndex]?.tasks?.[indexes?.taskIndex] || null);
 
   useEffect(() => {
-    const settask = () => setTask(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
+    const settask = () => setTask(data?.boards?.[indexes?.boardIndex]?.columns?.[indexes?.columnIndex]?.tasks?.[indexes?.taskIndex] || null);
     settask()
-  }, [data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]]);
+  }, [data?.boards?.[indexes?.boardIndex]?.columns?.[indexes?.columnIndex]?.tasks?.[indexes?.taskIndex]]);
   
   
   const showDeleteTask = () => {
@@ -55,7 +77,7 @@ export default function DeleteTask() {
         <div className="box">
           <h2>Delete this task?</h2>
           <div className="description">
-            Are you sure you want to delete the '<span id="taskTitle">{task?.title}</span>' task and its subtasks? This action cannot be reversed.
+            Are you sure you want to delete the '<span id="taskTitle">{task?.title || 'Untitled Task'}</span>' task and its subtasks? This action cannot be reversed.
           </div>
           <div className="buttons">
             <button className="deleteBoardButton">Delete</button>

@@ -1,38 +1,61 @@
-import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
+import { useEffect, useState } from "react";
 import { handleClickTask } from "./header";
 
 
 export function AddTask(props: any) {
+  // Default data structures to prevent undefined errors
+  const defaultData = { boards: [] };
+  const defaultIndexes = { boardIndex: 0, columnIndex: 0, taskIndex: 0 };
+
   const [data, setData] = useState(() => {
     const saved: any = localStorage.getItem("data");
-    const initialValue: any = JSON.parse(saved);
-    return initialValue || "";
+    if (!saved) return defaultData;
+    try {
+      const initialValue: any = JSON.parse(saved);
+      return initialValue?.boards ? initialValue : defaultData;
+    } catch (error) {
+      console.error("Error parsing localStorage data:", error);
+      return defaultData;
+    }
   });
-
 
   const [indexes, setIndexes] = useState(() => {
     const saved: any = localStorage.getItem("indexes");
-    const initialValue: any = JSON.parse(saved);
-    return initialValue || "";
+    if (!saved) return defaultIndexes;
+    try {
+      const initialValue: any = JSON.parse(saved);
+      return initialValue || defaultIndexes;
+    } catch (error) {
+      console.error("Error parsing localStorage indexes:", error);
+      return defaultIndexes;
+    }
   })
 
   useEffect(() => {
     const saved: any = localStorage.getItem("indexes");
-    const initialValue: any = JSON.parse(saved);
-    setIndexes(initialValue || "");
+    if (saved) {
+      try {
+        const initialValue: any = JSON.parse(saved);
+        setIndexes(initialValue || defaultIndexes);
+      } catch (error) {
+        console.error("Error parsing localStorage indexes:", error);
+        setIndexes(defaultIndexes);
+      }
+    }
   })
 
-  const [task, setTask] = useState(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
-  const [columns, setColumns] = useState(data?.boards[indexes.boardIndex]?.columns);
+  const [task, setTask] = useState(data?.boards?.[indexes?.boardIndex]?.columns?.[indexes?.columnIndex]?.tasks?.[indexes?.taskIndex] || null);
+  const [columns, setColumns] = useState(data?.boards?.[indexes?.boardIndex]?.columns || []);
   const [board, setBoard] = useState(0);
 
   useEffect(() => {
-    setTask(data?.boards[indexes.boardIndex]?.columns[indexes.columnIndex]?.tasks[indexes.taskIndex]);
-    setColumns(data?.boards[indexes.boardIndex]?.columns);
+    setTask(data?.boards?.[indexes?.boardIndex]?.columns?.[indexes?.columnIndex]?.tasks?.[indexes?.taskIndex] || null);
+    setColumns(data?.boards?.[indexes?.boardIndex]?.columns || []);
     setBoard(() => {
-      const activeId: any = document.querySelector(".board.board1.active")?.id
-      return parseInt(activeId)});
+      const activeElement = document.querySelector(".board.board1.active");
+      const activeId = activeElement?.id;
+      return activeId ? parseInt(activeId) : 0;
+    });
   })
 
   useEffect(() => {
@@ -43,8 +66,8 @@ export function AddTask(props: any) {
     const panelHeight = panel.offsetHeight;
 
     if (panelHeight > window.innerHeight) {
-      filter.style.height = panelHeight * 1.1 + "px"; 
-      addTask.style.height = panelHeight * 1.1 + "px"; 
+      filter.style.height = panelHeight * 1.1 + "px";
+      addTask.style.height = panelHeight * 1.1 + "px";
       document.body.style.overflow = "scroll";
     } else {
       filter.style.height = "100vh";
@@ -85,7 +108,7 @@ export function AddTask(props: any) {
     e.target.style.border = "1px solid var(--clr-d-6)";
     e.target.parentNode.querySelector("img").src = "/icon-cross.svg";
     e.target.parentNode.querySelector("p").style.display = "none";
-    console.log(e.target.value);
+    console.log("🔧 [AddTask] Subtask value changed:", e.target.value);
   }
 
   const deleteSubtask = (e: any) => {
@@ -98,9 +121,9 @@ export function AddTask(props: any) {
       e.target.parentElement.remove();
     }
   }
-  
+
   return (
-    <section className="addTask" style={{display: "none"}}>
+    <section className="addTask" style={{ display: "none" }}>
       <div className="filter2" onClick={handleClickTask}></div>
       <div className="editTaskPanel">
         <div className="box">
@@ -118,9 +141,9 @@ export function AddTask(props: any) {
               <label>Subtasks</label>
               {subtasks.map((subtask, index) => (
                 <div key={index} className={`subtask subtask-${index}`}>
-                  <input placeholder="e.g. Make coffee" onChange={(event) => handleSubtaskChange(event, index)}/>
+                  <input placeholder="e.g. Make coffee" onChange={(event) => handleSubtaskChange(event, index)} />
                   <img src="/icon-cross.svg" alt="" className="cross" onClick={deleteSubtask} />
-                  <p style={{display: "none"}}>Can't be empty</p>
+                  <p style={{ display: "none" }}>Can't be empty</p>
                 </div>
               ))}
               <button type="button" onClick={handleAddSubtask}>Add Subtask</button>
@@ -128,16 +151,16 @@ export function AddTask(props: any) {
             <div className="status">
               <h3 className="title">Current Status</h3>
               <div className="selected" onClick={displayShow}>
-                <h3>{data?.boards[board]?.columns[0]?.name}</h3>
+                <h3>{data?.boards?.[board]?.columns?.[0]?.name || 'No Status'}</h3>
                 <img src="/icon-chevron-down.svg" alt="The down chevron" />
               </div>
-              <div className="options" style={{display: "none"}}>
-                {data.boards[board]?.columns?.map((column: any, index: any) => {
-                  return <h3 key={index} className={'state state' + index} onClick={displayShow}>{column?.name}</h3>
+              <div className="options" style={{ display: "none" }}>
+                {data?.boards?.[board]?.columns?.map((column: any, index: any) => {
+                  return <h3 key={index} className={'state state' + index} onClick={displayShow}>{column?.name || 'Untitled Column'}</h3>
                 })}
               </div>
             </div>
-          <button type="submit" id="button" form="editTaskForm">Create Task</button>
+            <button type="submit" id="button" form="editTaskForm">Create Task</button>
           </form>
         </div>
       </div>
