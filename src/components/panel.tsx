@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 function Panel(props: any) {
   // Default data structure to prevent undefined errors
   const defaultData = { boards: [] };
-  -
+
   const [data, setData] = useState(() => {
     const saved: any = localStorage.getItem("data");
     if (!saved) return defaultData;
